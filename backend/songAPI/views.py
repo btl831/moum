@@ -33,15 +33,3 @@ class SingerListAPI(generics.GenericAPIView, mixins.ListModelMixin):
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
-"""
-class SingerDetailAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
-    serializer_class = SongSerializer
-
-    def get_queryset(self):
-        singer = self.kwargs['singer']
-        return Song.objects.filter(singer=singer)
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-"""
