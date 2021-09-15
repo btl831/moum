@@ -27,7 +27,6 @@ if __name__ == '__main__':
 driver = webdriver.Chrome('chromedriver.exe')
 driver.maximize_window()
 driver.get("https://www.youtube.com/premium")
-print("\n로그인 진행 후에 새창 활성화를 해주세요!!!\n")
 
 # Detecting Login
 # 로그인 진행 후에 새창 활성화!!
@@ -37,14 +36,13 @@ while True:
     if(len(driver.window_handles) > 1):
         driver.switch_to.window(driver.window_handles[1])
         if(driver.current_url == YOUTUBE_MUSIC):
-            driver.get(driver.current_url)
             break
         else:
             driver.close()
             driver.switch_to.window(driver.window_handles[0])
 
 while True:
-    if "browse" in driver.current_url:
+    if ("browse" in driver.current_url):
         # Infinite Scroll
         driver.implicitly_wait(2)
         element = driver.find_element_by_tag_name('body')
@@ -86,6 +84,5 @@ while True:
                 title = d['title'],
                 image = d['image']
             )
-        driver.get("https://music.youtube.com/")
+        driver.get(YOUTUBE_MUSIC)
         print("\nData saved.\n")
-        
