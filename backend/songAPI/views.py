@@ -5,7 +5,6 @@ from rest_framework import mixins
 
 from .models import Song
 from .serializers import SongSerializer
-import os
 
 class SongListAPI(generics.GenericAPIView, mixins.ListModelMixin):
     serializer_class = SongSerializer
@@ -24,3 +23,25 @@ class SongDetailAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+class SingerListAPI(generics.GenericAPIView, mixins.ListModelMixin):
+    serializer_class = SongSerializer
+
+    def get_queryset(self):
+        singer = self.kwargs['singer']
+        return Song.objects.filter(singer=singer).order_by('id')
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+"""
+class SingerDetailAPI(generics.GenericAPIView, mixins.RetrieveModelMixin):
+    serializer_class = SongSerializer
+
+    def get_queryset(self):
+        singer = self.kwargs['singer']
+        return Song.objects.filter(singer=singer)
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+"""
