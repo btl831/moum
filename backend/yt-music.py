@@ -8,17 +8,16 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
 from django.db.utils import IntegrityError
+import time
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
-
 import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
-if __name__ == '__main__':
-    from songAPI.models import Song, Profile
+from songAPI.models import Song, Profile
         
 # Youtube music login
 driver = webdriver.Chrome('chromedriver.exe')
@@ -103,22 +102,22 @@ while True:
         if("channel" not in driver.current_url):
             print("\n[!] you are off the page.")
         else:
-            try:
-                print("\nScraping profile image starts.")
-                # scraping data
-                soup = BeautifulSoup(driver.page_source, 'lxml')
-                singer = soup.select_one('div.content-container > yt-formatted-string.title').text
-                imgtag = soup.select_one('ytmusic-fullbleed-thumbnail-renderer > picture > source')
+            print("\nScraping profile image starts.")
 
-                # saving data
+            # scraping data
+            soup = BeautifulSoup(driver.page_source, 'lxml')
+            singer = soup.select_one('div.content-container > yt-formatted-string.title').text
+            imgtag = soup.select_one('ytmusic-fullbleed-thumbnail-renderer > picture > source')
+
+            # saving data
+            try:
                 Profile.objects.create(
                     singer = singer,
                     profile = imgtag['srcset'].replace('w540', 'w1920').replace('h225', 'h800')
                 )
-
-                driver.get(YOUTUBE_MUSIC)
-                print("\nFinished.\n")
             except IntegrityError:
                 print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
                 print("[!] Already saved data.")
                 print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+            driver.get(YOUTUBE_MUSIC)
+            print("\nFinished.\n")
