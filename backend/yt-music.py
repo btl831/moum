@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from django.db.utils import IntegrityError
 
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
@@ -47,11 +48,14 @@ while True:
         try:
             singer_id = Profile.objects.get(pk=data)
         except Profile.DoesNotExist:
-            print("\n[!] There's no profile data.\n[!] You must select another singer_id.")
-            print("\n[!] If you want to escape, input 'quit'")
+            print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+            print("[!] There's no profile data.\n[!] You must select another singer_id.")
+            print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
             continue
         except ValueError:
-            print("\n[!] Input value must be number type.")
+            print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+            print("[!] Input value must be number type.")
+            print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
             continue
 
         # Infinite Scroll
@@ -65,8 +69,8 @@ while True:
         base_url = 'https://youtube.com/'
         soup = BeautifulSoup(driver.page_source, 'lxml')
 
-        lists_secondary = soup.select('div.secondary-flex-columns > yt-formatted-string > a.yt-simple-endpoint')
         lists_title = soup.select('div.title-column > yt-formatted-string > a.yt-simple-endpoint')
+        lists_secondary = soup.select('div.secondary-flex-columns > yt-formatted-string')
         imgtags = soup.select('ytmusic-thumbnail-renderer > yt-img-shadow#image > img#img')
 
         images = []
@@ -76,34 +80,45 @@ while True:
             link = lists_title[i]['href']
             if(link is not None):
                 link = link[:link.index("&")]
-                singer = lists_secondary[i*2].text
+                singer = lists_secondary[i*2]['title']
                 title = lists_title[i].text
-                image = images[i].replace("w60", "w544").replace("h60", "h544")                
-                Song.objects.create(
-                    link = base_url + link,
-                    singer = singer,
-                    title = title,
-                    image = image,
-                    singer_id = singer_id
-            )
+                image = images[i].replace("w60", "w544").replace("h60", "h544")
+                try:            
+                    Song.objects.create(
+                        link = base_url + link,
+                        singer = singer,
+                        title = title,
+                        image = image,
+                        singer_id = singer_id
+                    )
+                except IntegrityError:
+                    print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+                    print("[!] Already saved data.")
+                    print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+                    break
         driver.get(YOUTUBE_MUSIC)
-        print("\nData saved.\n")
+        print("\nFinished.\n")
     elif "channel" in driver.current_url:
         data = input('\nDoes scrap this profile image?\nInput any key to proceed: ')
         if("channel" not in driver.current_url):
             print("\n[!] you are off the page.")
         else:
-            print("\nScraping profile image starts.")
-            # scraping data
-            soup = BeautifulSoup(driver.page_source, 'lxml')
-            singer = soup.select_one('div.content-container > yt-formatted-string.title').text
-            imgtag = soup.select_one('ytmusic-fullbleed-thumbnail-renderer > picture > source')
+            try:
+                print("\nScraping profile image starts.")
+                # scraping data
+                soup = BeautifulSoup(driver.page_source, 'lxml')
+                singer = soup.select_one('div.content-container > yt-formatted-string.title').text
+                imgtag = soup.select_one('ytmusic-fullbleed-thumbnail-renderer > picture > source')
 
-            # saving data
-            Profile.objects.create(
-                singer = singer,
-                profile = imgtag['srcset'].replace('w540', 'w1920').replace('h225', 'h800')
-            )
+                # saving data
+                Profile.objects.create(
+                    singer = singer,
+                    profile = imgtag['srcset'].replace('w540', 'w1920').replace('h225', 'h800')
+                )
 
-            driver.get(YOUTUBE_MUSIC)
-            print("\nData saved.\n")
+                driver.get(YOUTUBE_MUSIC)
+                print("\nFinished.\n")
+            except IntegrityError:
+                print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+                print("[!] Already saved data.")
+                print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
