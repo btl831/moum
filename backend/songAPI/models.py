@@ -3,7 +3,7 @@ from django.db import models
 
 class Profile(models.Model):
     singer = models.CharField(max_length=30, unique=True)
-    profile = models.CharField(max_length=200, null=True)
+    profile = models.CharField(max_length=200)
 
     def __str__(self):
         return f'[{self.pk}] {self.singer}'
