@@ -41,6 +41,10 @@ while True:
     if "browse" in driver.current_url:
         # Select singer
         data = input('\nSongs will be scraped.\nIf you want to escape, input "quit".\nInput singer_id : ')
+        if("browse" not in driver.current_url):
+            print("\n[!] you are off the page.")
+            continue
+
         if(data == "quit"):
             driver.get(YOUTUBE_MUSIC)
             continue
