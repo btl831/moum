@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Button, Navbar, NavDropdown, Container, Carousel, Card, Row, Table, ListGroup,
+  Button, Navbar, Container, Carousel, Card, Row, Table, ListGroup,
   Figure, Spinner, Nav
 } from 'react-bootstrap';
 import './App.css';
@@ -13,7 +13,6 @@ import Developer_intro from './Developer';
 
 
 function App() {
-
   let [수량, 수량변경] = useState([1, 2, 3]);
   let history = useHistory();
   let [loading, setLoading] = useState(true);
@@ -27,13 +26,11 @@ function App() {
     axios.get("https://btl831.github.io/example1.json")
       .then((result) => { console.log(result.data); 차트정보변경(result.data); setLoading(false) })
       .catch();
-
   }, []);
 
   if (loading) return (<>로딩중 <Spinner animation="border" variant="primary" className="spinner" /></>);
 
   return (
-
     <div className="App">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,7 +44,7 @@ function App() {
 
       {/* navbar */}
       <Navbar bg="dark" variant="dark">
-
+        <Container>
         <Navbar.Brand href="/" >
           <img
             alt=""
@@ -58,9 +55,6 @@ function App() {
           />{' '}
           BTL 831 INTRO
         </Navbar.Brand>
-
-
-        <Container>
           <Nav className="me-auto">
             <Nav.Link href="/chart">TOP 100</Nav.Link>
             <Nav.Link href="/write">Write</Nav.Link>
@@ -68,8 +62,6 @@ function App() {
           <GoogleButton />
         </Container>
       </Navbar>
-
-
 
       {/* 첫번째 라우트 */}
 
@@ -90,7 +82,6 @@ function App() {
                         <Row className="justify-content-md-center">
 
                           {
-
                             차트정보.slice(3 * y, 3 * (y + 1)).map((a, i) => {
                               return (<Card_Jumbo 곡={a} i={i} />)
                             })
@@ -99,10 +90,8 @@ function App() {
                         </Row>
                       </Carousel.Item>
                     )
-
                   })
                 }
-
               </Carousel>
             </div>
             <br />
@@ -113,7 +102,7 @@ function App() {
             <div className="row">
               <div className="col-md-7 sub_title ">
                 <hr />
-                <h6 className="mt-1">느낌별 Playlist</h6>
+                <h6 className="mt-1">가수별 Playlist</h6>
                 <hr />
                 <Container className="row">
                   <div className="col-md-5 box ">
@@ -129,8 +118,8 @@ function App() {
               <div className="col-md-5 ">
 
                 <h6 className="mr-10">TOP 100 &nbsp;&nbsp;
-                  <Link to="/chart"><Button className="secondary" >더보기</Button></Link></h6>
-
+                  <Link to="/chart"><Button className="secondary">더보기</Button></Link>
+                </h6>
                 <Chart 차트정보={차트정보.slice(undefined, 5)} />
               </div>
             </div>
@@ -141,19 +130,17 @@ function App() {
               <h3 className="col-md-11">추가요청 게시판</h3>
               <Link to="/write" className="col-md-1"><Button >작성하기</Button></Link>
 
-
               <div className="col-md-4 mt-2">
                 <Community></Community>
-
               </div>
               <div className="col-md-8 mt-2 sub_community">
                 <a>여기에는 상세페이지 내용이 적힐 겁니다.</a>
               </div>
-
             </div>
 
             {/* container 마무리 */}
           </Route>
+
           {/* <Route path = "/title" component = {Card_Jumbo}/> */}
           <Route path="/chart">
             <br />
@@ -173,13 +160,8 @@ function App() {
             <Developer_intro />
           </div>
         </Route>
-
         <br />
-
       </body>
-
-
-
 
       {/* footer */}
       <footer className="py-4 bg-dark">
@@ -191,9 +173,7 @@ function App() {
         </div>
       </footer>
 
-
     </div>
-
   );
 }
 
@@ -205,13 +185,11 @@ function Card_Jumbo(props) {
         <Card.Title>{props.곡.song}</Card.Title>
         <Card.Text>
           <p>가수 :{props.곡.singer} </p>
-
         </Card.Text>
 
         <AlertSong 곡={props.곡} i={props.i} />
 
       </Card.Body>
-
     </Card>
   )
 }
@@ -258,7 +236,6 @@ function Chart(props) {
               </tr>
             )
           })
-
         }
 
       </tbody>
@@ -275,7 +252,6 @@ function Community() {
       <ListGroup.Item variant="secondary">최근 게시물 4</ListGroup.Item>
     </ListGroup>
   )
-
 }
 
 export default App;

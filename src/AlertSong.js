@@ -17,12 +17,11 @@ export default function InfoModal(props) {
              centered>
         
         <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+          Close
+        </Button>
           
-        
         <Modal.Body>
-            <div className = "row">
+          <div className = "row">
             <div className="col-6"  >
               <ReactPlayer
               url = {props.곡.link} 
@@ -31,11 +30,9 @@ export default function InfoModal(props) {
               playing controls/>
             </div>
             <div className ="col-6">
-             제목 : {props.곡.song}
+              제목 : {props.곡.song}
             </div>
-            </div>
-  
-
+          </div>
         </Modal.Body>
         <Modal.Footer>
           
