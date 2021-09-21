@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Button } from 'react-bootstrap';
+import { Alert, Modal, Button } from 'react-bootstrap';
 import ReactPlayer from "react-player";
+import './AlertSong.css';
 
 export default function InfoModal(props) {
   const [show, setShow] = useState(false);
@@ -13,29 +14,31 @@ export default function InfoModal(props) {
       <Button className="nextButton" variant="secondary" onClick={handleShow}>
         Go Song
       </Button>
-      <Modal show={show} onHide={handleClose}  
-             centered>
-        
+      <Modal show={show} onHide={handleClose} size="xl" centered>
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
           
         <Modal.Body>
           <div className = "row">
-            <div className="col-6"  >
+            <div className="col-sm-1 col-md-7 player-wrapper">
               <ReactPlayer
-              url = {props.곡.link} 
-              width='100%'
-              height='100%'
-              playing controls/>
+                url = {props.곡.link}
+                className = "react-player"
+                width='100%'
+                height='100%'
+                playing
+                controls = {true}
+              />
             </div>
-            <div className ="col-6">
-              제목 : {props.곡.song}
+            <div className="col-sm-1 col-md-4" id="song-content">
+              <Alert variant="secondary">제목 : {props.곡.song}</Alert>
+              <Alert variant="secondary">가수 : {props.곡.singer}</Alert>
+              <hr/>
             </div>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          
         </Modal.Footer>
       </Modal>
     </>

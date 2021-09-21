@@ -1,6 +1,16 @@
-.modal-size{
-    width: 80%;
-    height: 80%;
-    margin: 0;
-    padding: 0;
+.player-wrapper {
+    position: relative;
+    padding-top: 42.25%;
+}
+.react-player {
+    position: absolute;
+    top: 0;
+    left: 10;
+}
+div#song-content {
+    border-left: 1px dashed rgb(175, 175, 175);
+    position: relative;
+    margin: 15px;
+    margin-left: 50px;
+    padding-left: 35px;
 }
