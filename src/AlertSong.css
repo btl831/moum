@@ -5,7 +5,7 @@
 .react-player {
     position: absolute;
     top: 0;
-    left: 10;
+    left: 1;
 }
 div#song-content {
     border-left: 1px dashed rgb(175, 175, 175);
