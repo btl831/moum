@@ -33,7 +33,8 @@ export default function InfoModal(props) {
             </div>
             <div className="col-md-5">
               <div id="songinfo">
-                <Image src="./test.png" thumbnail />
+                {/* 테스트용 이미지 */}
+                <Image src='https://lh3.googleusercontent.com/yoZbj8OKj9ELsG8CJtph113lsYXzOuD26gNZG6HvkEdleVuTMedIxVs8HYqD1AGjO13Fjm1-1yoMNSw=w544-h544-l90-rj' thumbnail />
                 <hr/>
                 <Alert variant="secondary">제목 : {props.곡.song}</Alert>
                 <Alert variant="secondary">가수 : {props.곡.singer}</Alert>
