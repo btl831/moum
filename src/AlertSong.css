@@ -7,10 +7,9 @@
     top: 0;
     left: 1;
 }
-div#song-content {
+div#songinfo {
     border-left: 1px dashed rgb(175, 175, 175);
     position: relative;
-    margin: 15px;
-    margin-left: 50px;
-    padding-left: 35px;
+    margin-left: 20px;
+    padding-left: 20px;
 }

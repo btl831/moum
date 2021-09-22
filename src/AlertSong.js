@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Modal, Button } from 'react-bootstrap';
+import { Alert, Modal, Button, Image } from 'react-bootstrap';
 import ReactPlayer from "react-player";
 import './AlertSong.css';
 
@@ -21,7 +21,7 @@ export default function InfoModal(props) {
           
         <Modal.Body>
           <div className = "row">
-            <div className="col-sm-1 col-md-7 player-wrapper">
+            <div className="col-md-7 player-wrapper">
               <ReactPlayer
                 url = {props.곡.link}
                 className = "react-player"
@@ -31,10 +31,13 @@ export default function InfoModal(props) {
                 controls = {true}
               />
             </div>
-            <div className="col-sm-1 col-md-4" id="song-content">
-              <Alert variant="secondary">제목 : {props.곡.song}</Alert>
-              <Alert variant="secondary">가수 : {props.곡.singer}</Alert>
-              <hr/>
+            <div className="col-md-5">
+              <div id="songinfo">
+                <Image src="./test.png" thumbnail />
+                <hr/>
+                <Alert variant="secondary">제목 : {props.곡.song}</Alert>
+                <Alert variant="secondary">가수 : {props.곡.singer}</Alert>
+              </div>
             </div>
           </div>
         </Modal.Body>
