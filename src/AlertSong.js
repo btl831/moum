@@ -14,7 +14,7 @@ export default function InfoModal(props) {
       <Button className="nextButton" variant="secondary" onClick={handleShow}>
         Go Song
       </Button>
-      <Modal show={show} onHide={handleClose} size="xl" centered>
+      <Modal show={show} onHide={handleClose} size="xl" backdrop="static" centered>
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
