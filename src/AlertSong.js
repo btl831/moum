@@ -23,7 +23,7 @@ export default function InfoModal(props) {
           <div className = "row">
             <div className="col-md-7 player-wrapper">
               <ReactPlayer
-                url = {props.곡.link}
+                url = {props.pick_song.link}
                 className = "react-player"
                 width='100%'
                 height='100%'
@@ -36,8 +36,8 @@ export default function InfoModal(props) {
                 {/* 테스트용 이미지 */}
                 <Image src='https://lh3.googleusercontent.com/yoZbj8OKj9ELsG8CJtph113lsYXzOuD26gNZG6HvkEdleVuTMedIxVs8HYqD1AGjO13Fjm1-1yoMNSw=w544-h544-l90-rj' thumbnail />
                 <hr/>
-                <Alert variant="secondary">제목 : {props.곡.song}</Alert>
-                <Alert variant="secondary">가수 : {props.곡.singer}</Alert>
+                <Alert variant="secondary">제목 : {props.pick_song.song}</Alert>
+                <Alert variant="secondary">가수 : {props.pick_song.singer}</Alert>
               </div>
             </div>
           </div>
