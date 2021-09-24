@@ -13,18 +13,17 @@ import Developer_intro from './Developer';
 
 
 function App() {
-  let [수량, 수량변경] = useState([1, 2, 3]);
   let history = useHistory();
   let [loading, setLoading] = useState(true);
-  let [차트정보, 차트정보변경] = useState([]);
+  let [chart_info, setChart_info] = useState([]);
   var [cardpage, setCardpage] = useState([1, 2, 3]);
 
   useEffect(() => {
     const htmlTitle = document.querySelector("title");
     htmlTitle.innerHTML = "Btl831";
 
-    axios.get("https://btl831.github.io/example1.json")
-      .then((result) => { console.log(result.data); 차트정보변경(result.data); setLoading(false) })
+    axios.get("https://btl831.github.io/example.json")
+      .then((result) => { console.log(result.data); setChart_info(result.data); setLoading(false) })
       .catch();
   }, []);
 
@@ -82,8 +81,8 @@ function App() {
                         <Row className="justify-content-md-center">
 
                           {
-                            차트정보.slice(3 * y, 3 * (y + 1)).map((a, i) => {
-                              return (<Card_Jumbo 곡={a} i={i} />)
+                            chart_info.slice(3 * y, 3 * (y + 1)).map((a, i) => {
+                              return (<Card_Jumbo pick_song={a} i={i} />)
                             })
                           }
 
@@ -120,7 +119,7 @@ function App() {
                 <h6 className="mr-10">TOP 100 &nbsp;&nbsp;
                   <Link to="/chart"><Button className="secondary">더보기</Button></Link>
                 </h6>
-                <Chart 차트정보={차트정보.slice(undefined, 5)} />
+                <Chart chart_info={chart_info.slice(undefined, 5)} />
               </div>
             </div>
             <hr />
@@ -144,7 +143,7 @@ function App() {
           {/* <Route path = "/title" component = {Card_Jumbo}/> */}
           <Route path="/chart">
             <br />
-            <Chart 차트정보={차트정보} className="mt-20 mb-5" />
+            <Chart chart_info={chart_info} className="mt-20 mb-5" />
           </Route>
           <Route path="/write">
             <div class="full">
@@ -180,16 +179,16 @@ function App() {
 function Card_Jumbo(props) {
   return (
     <Card style={{ width: '18rem', height: '30rem' }} className="j_card mt-5" >
-      <Card.Img variant="top" src="/IU.jpg" className="mt-3" />
+      <Card.Img variant="top" src={props.pick_song.image} className="mt-3" />
       <Card.Body>
-        <Card.Title>{props.곡.song}</Card.Title>
+        <Card.Title>{props.pick_song.title}</Card.Title>
         <Card.Text>
-          <p>가수 :{props.곡.singer} </p>
+          <p>가수 : {props.pick_song.singer} </p>
         </Card.Text>
 
-        <AlertSong 곡={props.곡} i={props.i} />
-
       </Card.Body>
+      <AlertSong pick_song={props.pick_song} i={props.i} />
+      <hr/>
     </Card>
   )
 }
@@ -198,13 +197,16 @@ function Recommend() {
   return (
     <Figure className="mt-3">
       <Figure.Image
-        width={171}
+        width={180}
         height={180}
-        alt="171x180"
-        src="/black_pink.jpg"
+        alt="180x180"
+        src="https://i.ytimg.com/vi/tHmc2mAXZSA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDLny-RWs_I2o50OjZfWAA1vyNHRg"
+        
+        // 미구현
+        onClick = {()=>{<AlertSong />}}
       />
       <Figure.Caption>
-        오늘은 블랙핑크 노래로 하루를 시작해 봅시다.
+        [Playlist] J-POP 입문은 이 밴드로! 2021 요루시카 노래 모음 Yorushika songs ヨルシカ (15곡)
       </Figure.Caption>
     </Figure>
   )
@@ -225,14 +227,14 @@ function Chart(props) {
       <tbody>
 
         {
-          props.차트정보.map((a, i) => {
+          props.chart_info.map((a, i) => {
             return (
               <tr>
-                <td>{a.id + 1}</td>
-                <td><image src="IU.jpg" /></td>
-                <td>{a.song}</td>
+                <td>{a.id}</td>
+                <td><Figure.Image src={a.image} width={50} height={50} /></td>
+                <td>{a.title}</td>
                 <td>{a.singer}</td>
-                <td><AlertSong 곡={a} i={i} /></td>
+                <td><AlertSong pick_song={a} i={i} /></td>
               </tr>
             )
           })
