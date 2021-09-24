@@ -11,9 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from django.db.utils import IntegrityError
 import time
 
-import os
-import django
-
+import os, django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
 
@@ -69,7 +67,7 @@ while True:
             time.sleep(1)
 
         # Scraping Data
-        base_url = 'https://youtube.com/'
+        base_url = 'https://www.youtube.com'
         soup = BeautifulSoup(driver.page_source, 'lxml')
 
         lists_title = soup.select('div.title-column > yt-formatted-string > a.yt-simple-endpoint')
@@ -79,13 +77,21 @@ while True:
         images = []
         for img in imgtags:
             images.append(img['src'])
+
         for i in range(len(lists_title)):
-            link = lists_title[i]['href']
+            singer = lists_secondary[i*2]['title']
+            title = lists_title[i].text
+            image = images[i].replace("w60", "w544").replace("h60", "h544")
+            
+            # New page for scraping url
+            driver.get("https://www.youtube.com/results?search_query=" + singer + "+" + title)
+
+            driver.implicitly_wait(2)
+            soup = BeautifulSoup(driver.page_source, 'lxml')
+            link = (soup.select_one('div#title-wrapper > h3 > a#video-title'))['href']
+
+            # Saving Data
             if(link is not None):
-                link = link[:link.index("&")]
-                singer = lists_secondary[i*2]['title']
-                title = lists_title[i].text
-                image = images[i].replace("w60", "w544").replace("h60", "h544")
                 try:            
                     Song.objects.create(
                         link = base_url + link,
@@ -94,10 +100,13 @@ while True:
                         image = image,
                         singer_id = singer_id
                     )
+                    print("Data saved. (+1)")
+                    time.sleep(2)
                 except IntegrityError:
                     print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
                     print("[!] Already saved data.")
                     print('ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ')
+                    driver.get(YOUTUBE_MUSIC)
                     break
         driver.get(YOUTUBE_MUSIC)
         print("\nFinished.\n")
@@ -108,12 +117,12 @@ while True:
         else:
             print("\nScraping profile image starts.")
 
-            # scraping data
+            # Scraping Data
             soup = BeautifulSoup(driver.page_source, 'lxml')
             singer = soup.select_one('div.content-container > yt-formatted-string.title').text
             imgtag = soup.select_one('ytmusic-fullbleed-thumbnail-renderer > picture > source')
 
-            # saving data
+            # Saving Data
             try:
                 Profile.objects.create(
                     singer = singer,
