@@ -20,13 +20,14 @@ function App() {
 
   useEffect(() => {
     const htmlTitle = document.querySelector("title");
-    htmlTitle.innerHTML = "Btl831";
+    htmlTitle.innerHTML = "MOUM";
 
     axios.get("https://btl831.github.io/example.json")
       .then((result) => { console.log(result.data); setChart_info(result.data); setLoading(false) })
       .catch();
   }, []);
 
+  // 로딩 UI 더 좋은거 사용하자
   if (loading) return (<>로딩중 <Spinner animation="border" variant="primary" className="spinner" /></>);
 
   return (
@@ -46,13 +47,12 @@ function App() {
         <Container>
         <Navbar.Brand href="/" >
           <img
-            alt=""
-            src="/logo.svg"
-            width="30"
+            alt="MOUM"
+            src="/logo.png"
+            width="120"
             height="30"
             className="d-inline-block align-top"
           />{' '}
-          BTL 831 INTRO
         </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/chart">TOP 100</Nav.Link>
@@ -67,7 +67,6 @@ function App() {
       {/* 첫번째 섹션 */}
       <body className="body">
         <div className="container">
-
           <Route exact path="/">
             <div className="row">
               <hr />
@@ -95,7 +94,6 @@ function App() {
             </div>
             <br />
             <br />
-
 
             {/* 두번째 섹션 */}
             <div className="row">
