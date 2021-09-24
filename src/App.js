@@ -183,7 +183,7 @@ function Card_Jumbo(props) {
       <Card.Body>
         <Card.Title>{props.pick_song.title}</Card.Title>
         <Card.Text>
-          <p>가수 :{props.pick_song.singer} </p>
+          <p>가수 : {props.pick_song.singer} </p>
         </Card.Text>
 
       </Card.Body>

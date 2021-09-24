@@ -35,7 +35,7 @@ export default function InfoModal(props) {
               <div id="songinfo">
                 <Image src={props.pick_song.image} thumbnail />
                 <hr/>
-                <Alert variant="secondary">제목 : {props.pick_song.song}</Alert>
+                <Alert variant="secondary">제목 : {props.pick_song.title}</Alert>
                 <Alert variant="secondary">가수 : {props.pick_song.singer}</Alert>
               </div>
             </div>
