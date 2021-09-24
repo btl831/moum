@@ -116,7 +116,7 @@ function PlayBox(props) {
     )
 }
 
-// 들었던 노래 재생목록 추가 히스토리
+// 들었던 노래 재생목록 추가 히스토리 미구현
 function HistoryMusic(props) {
 
 
