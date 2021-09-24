@@ -10,6 +10,7 @@ import AlertSong from './AlertSong.js'
 import GoogleButton from './Google_login';
 import WritePage from './Write';
 import Developer_intro from './Developer';
+import ChartPage from './Chart';
 
 
 function App() {
@@ -62,11 +63,11 @@ function App() {
         </Container>
       </Navbar>
 
-      {/* 첫번째 라우트 */}
 
       {/* 첫번째 섹션 */}
       <body className="body">
         <div className="container">
+          
           <Route exact path="/">
             <div className="row">
               <hr />
@@ -117,7 +118,7 @@ function App() {
                 <h6 className="mr-10">TOP 100 &nbsp;&nbsp;
                   <Link to="/chart"><Button className="secondary">더보기</Button></Link>
                 </h6>
-                <Chart chart_info={chart_info.slice(undefined, 5)} />
+                <ChartPage chart_info={chart_info.slice(undefined, 5)} />
               </div>
             </div>
             <hr />
@@ -140,8 +141,9 @@ function App() {
 
           {/* <Route path = "/title" component = {Card_Jumbo}/> */}
           <Route path="/chart">
-            <br />
-            <Chart chart_info={chart_info} className="mt-20 mb-5" />
+            <div className ="full">
+            <ChartPage chart_info={chart_info} className="mt-20 mb-5" />
+            </div>
           </Route>
           <Route path="/write">
             <div class="full">
@@ -207,39 +209,6 @@ function Recommend() {
         [Playlist] J-POP 입문은 이 밴드로! 2021 요루시카 노래 모음 Yorushika songs ヨルシカ (15곡)
       </Figure.Caption>
     </Figure>
-  )
-}
-
-function Chart(props) {
-  return (
-    <Table striped bordered hover variant="dark">
-      <thead>
-        <tr>
-          <th>순위</th>
-          <th>앨범</th>
-          <th>제목</th>
-          <th>가수</th>
-          <th>듣기</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {
-          props.chart_info.map((a, i) => {
-            return (
-              <tr>
-                <td>{a.id}</td>
-                <td><Figure.Image src={a.image} width={50} height={50} /></td>
-                <td>{a.title}</td>
-                <td>{a.singer}</td>
-                <td><AlertSong pick_song={a} i={i} /></td>
-              </tr>
-            )
-          })
-        }
-
-      </tbody>
-    </Table>
   )
 }
 
