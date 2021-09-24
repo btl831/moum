@@ -1,4 +1,4 @@
-#website_newsong/backend/api/serializers.py
+# /backend/songAPI/serializers.py
 
 from rest_framework import serializers
 from .models import Profile, Song

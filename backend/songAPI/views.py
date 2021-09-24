@@ -1,4 +1,4 @@
-#website_newsong/backend/api/views.py
+# /backend/songAPI/views.py
 
 from rest_framework import generics
 from rest_framework import mixins

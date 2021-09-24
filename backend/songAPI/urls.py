@@ -1,4 +1,4 @@
-# website_newsong/backend/api/urls.py
+# /backend/songAPI/urls.py
 
 from django.urls import path
 from . import views

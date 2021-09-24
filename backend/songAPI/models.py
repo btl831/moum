@@ -1,4 +1,5 @@
-# website_newsong/backend/data_scrap/models.py
+# /backend/data_scrap/models.py
+
 from django.db import models
 
 class Profile(models.Model):
