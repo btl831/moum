@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Card } from 'react-bootstrap';
+import { Image, Card } from 'react-bootstrap';
 import { useMediaQuery } from "react-responsive";
 import AlertSong from "./AlertSong";
-import styles from "./Slider.module.css";
 
 export default function Slider(props) {
     const isMobile = useMediaQuery({
-        query : "(max-width:768px)"
+        query : "(max-width:800px)"
     });
 
     // random value for random song
@@ -21,50 +20,65 @@ export default function Slider(props) {
         }
     }
 
-    return (
-        <>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <div className="row mt-5">
-                <div>
-                    <div className="col-md-4">
-
-                    </div>
-                    <div className="col-md-4">
-
-                    </div>
-                    <div className="col-md-4">
-
+    if(isMobile) {
+        return (
+            <>
+                <head>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
+                        integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg=="
+                        crossorigin="anonymous"
+                        referrerpolicy="no-referrer">
+                    </script>
+                </head>
+                <div className="row mt-5" style={{marginLeft:"13vw"}}>
+                    <div>
+                        <Deck song={dataList[1]}/>
                     </div>
                 </div>
-                    <Deck song={dataList[2]}/>
-            </div>
-        </>
-    );
+                <br/>
+            </>
+        );
+    }
+    else {
+        return (
+            <>
+                <head>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"
+                        integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg=="
+                        crossorigin="anonymous"
+                        referrerpolicy="no-referrer">
+                    </script>
+                </head>
+                <div className="row mt-5" style={{display:"flex", justifyContent:"center"}}> 
+                    <div className="col-md-3">
+                        <Deck song={dataList[0]}/>
+                    </div>
+                    <div className="col-md-3">
+                        <Deck song={dataList[1]}/>
+                    </div>
+                    <div className="col-md-3">
+                        <Deck song={dataList[2]}/>
+                    </div>
+                </div>
+                <br/>
+            </>
+        );
+    }
 }
 
 function Deck(props) {
     let song = JSON.parse(props.song);
-
     return (
-      <Card style={{ width: '18rem', height: '30rem' }} className={styles.card} >
-        <Card.Img variant="top" src={song.image} className="mt-3" />
+      <Card style={{ width: '18rem', height: '29rem', margin : '10px' }} >
+        <Image style={{ width: '90%', margin : '15px' }} src={song.image} thumbnail/>
         <Card.Body>
-          <Card.Title>{song.title}</Card.Title>
-          <Card.Text>
-            <p>가수 : {song.singer} </p>
-          </Card.Text>
+            <Card.Title>{song.title}</Card.Title>
+            <Card.Text>
+                <p>가수 : {song.singer} </p>
+            </Card.Text>
+            <AlertSong pick_song={song} />
         </Card.Body>
-        <AlertSong pick_song={song} />
-        <hr/>
+        <br/>
       </Card>
     )
 }
-
-
-/*
-
-                {dataList.map((song, i) => (
-                        <Deck key={i} song={song}/>
-                    ))}
-
-*/
