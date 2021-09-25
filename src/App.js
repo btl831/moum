@@ -46,7 +46,7 @@ function App() {
           <img
             alt="MOUM"
             src="/logo.png"
-            height="50"
+            height="50px"
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
@@ -62,11 +62,9 @@ function App() {
       <body className="body">
         <div className="container">
           <Route exact path="/">
-            <div className="row">
-              <hr />
-              {/* 최상단 랜덤곡 */}
-              <Slider chart_info={chart_info} />
-            </div>
+            <br />
+            {/* 최상단 랜덤곡 */}
+            <Slider chart_info={chart_info} />
             <br />
             <br />
 
