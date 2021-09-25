@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button, Navbar, Container, Carousel, Card, Row, Table, ListGroup,
-  Figure, Spinner, Nav
-} from 'react-bootstrap';
-import './App.css';
+import { Button, Navbar, Container, Table, ListGroup, Figure, Spinner, Nav } from 'react-bootstrap';
 import { Link, Route, useHistory } from 'react-router-dom';
+
+import './App.css';
 import axios from 'axios';
 import AlertSong from './AlertSong.js'
+import Slider from './Slider';
 import GoogleButton from './Google_login';
 import WritePage from './Write';
 import Developer_intro from './Developer';
-
 
 function App() {
   let history = useHistory();
   let [loading, setLoading] = useState(true);
   let [chart_info, setChart_info] = useState([]);
-  var [cardpage, setCardpage] = useState([1, 2, 3]);
 
   useEffect(() => {
     const htmlTitle = document.querySelector("title");
@@ -26,7 +23,8 @@ function App() {
       .then((result) => { console.log(result.data); setChart_info(result.data); setLoading(false) })
       .catch();
   }, []);
-
+  
+  {/* Loading UI */}
   if (loading) return (<>로딩중 <Spinner animation="border" variant="primary" className="spinner" /></>);
 
   return (
@@ -71,31 +69,11 @@ function App() {
           <Route exact path="/">
             <div className="row">
               <hr />
-
-              {/* 3페이지 짜리 카드 */}
-              <Carousel className="carousel">
-                {
-                  cardpage.map((k, y) => {
-                    return (
-                      <Carousel.Item>
-                        <Row className="justify-content-md-center">
-
-                          {
-                            chart_info.slice(3 * y, 3 * (y + 1)).map((a, i) => {
-                              return (<Card_Jumbo pick_song={a} i={i} />)
-                            })
-                          }
-
-                        </Row>
-                      </Carousel.Item>
-                    )
-                  })
-                }
-              </Carousel>
+              {/* 최상단 랜덤곡 */}
+              <Slider chart_info={chart_info} />
             </div>
             <br />
             <br />
-
 
             {/* 두번째 섹션 */}
             <div className="row">
@@ -115,16 +93,16 @@ function App() {
               </div>
 
               <div className="col-md-5 ">
-
                 <h6 className="mr-10">TOP 100 &nbsp;&nbsp;
                   <Link to="/chart"><Button className="secondary">더보기</Button></Link>
                 </h6>
                 <Chart chart_info={chart_info.slice(undefined, 5)} />
               </div>
             </div>
-            <hr />
+            <br /><br /><hr />
 
-            {/* 네번째 섹션 */}
+            {/* 세번째 섹션 */}
+            <br /><br />
             <div className="row">
               <h3 className="col-md-11">추가요청 게시판</h3>
               <Link to="/write" className="col-md-1"><Button >작성하기</Button></Link>
@@ -136,11 +114,8 @@ function App() {
                 <a>여기에는 상세페이지 내용이 적힐 겁니다.</a>
               </div>
             </div>
-
-            {/* container 마무리 */}
           </Route>
 
-          {/* <Route path = "/title" component = {Card_Jumbo}/> */}
           <Route path="/chart">
             <br />
             <Chart chart_info={chart_info} className="mt-20 mb-5" />
@@ -159,7 +134,7 @@ function App() {
             <Developer_intro />
           </div>
         </Route>
-        <br />
+        <br /><br /><br />
       </body>
 
       {/* footer */}
@@ -171,26 +146,8 @@ function App() {
           <a onClick={() => { window.location.href = "/developer" }} style={{ color: "white" }}> developer</a>
         </div>
       </footer>
-
     </div>
   );
-}
-
-function Card_Jumbo(props) {
-  return (
-    <Card style={{ width: '18rem', height: '30rem' }} className="j_card mt-5" >
-      <Card.Img variant="top" src={props.pick_song.image} className="mt-3" />
-      <Card.Body>
-        <Card.Title>{props.pick_song.title}</Card.Title>
-        <Card.Text>
-          <p>가수 : {props.pick_song.singer} </p>
-        </Card.Text>
-
-      </Card.Body>
-      <AlertSong pick_song={props.pick_song} i={props.i} />
-      <hr/>
-    </Card>
-  )
 }
 
 function Recommend() {
