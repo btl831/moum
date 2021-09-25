@@ -46,10 +46,9 @@ function App() {
           <img
             alt="MOUM"
             src="/logo.png"
-            width="120"
-            height="30"
+            height="50"
             className="d-inline-block align-top"
-          />{' '}
+          />
         </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/chart">TOP 100</Nav.Link>
@@ -58,8 +57,6 @@ function App() {
           <GoogleButton />
         </Container>
       </Navbar>
-
-      {/* 첫번째 라우트 */}
 
       {/* 첫번째 섹션 */}
       <body className="body">
@@ -75,22 +72,22 @@ function App() {
 
             {/* 두번째 섹션 */}
             <div className="row">
-              <div className="col-md-7 sub_title ">
+              <div className="col-md-7">
                 <hr />
-                <h6 className="mt-1">가수별 Playlist</h6>
+                <h6>가수별 Playlist</h6>
                 <hr />
                 <Container className="row">
-                  <div className="col-md-5 box ">
+                  <div className="col-md-5 box">
                     <Recommend />
                   </div>
 
-                  <div className="col-md-5 box ">
+                  <div className="col-md-5 box">
                     <Recommend />
                   </div>
                 </Container>
               </div>
 
-              <div className="col-md-5 ">
+              <div className="col-md-5">
                 <h6 className="mr-10">TOP 100 &nbsp;&nbsp;
                   <Link to="/chart"><Button className="secondary">더보기</Button></Link>
                 </h6>
