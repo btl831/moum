@@ -1,8 +1,7 @@
 #smcard {
     position: relative;
-    padding-left : 50px;
+    padding-left : 30px;
 }
-
 .card {
     position: relative;
     height: 110%;
@@ -27,8 +26,15 @@
 .smbtn {
     position: relative;
     width: 300%;
-    height: 100%;
+    height: 80%;
     right: 20px;
-    top : 10px;
+    top : 50px;
     z-index: 2;
+}
+
+#slider {
+    height: 32rem;
+    padding-left:35px;
+    display:flex;
+    justify-content:center;
 }
