@@ -3,6 +3,10 @@
     top: 0px;
     left: 10px;
 }
+#smPlayerWrapper {
+    position: relative;
+    padding-top: 72.25%;
+}
 #playerWrapper {
     position: relative;
     padding-top: 52.25%;

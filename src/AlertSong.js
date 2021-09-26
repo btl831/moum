@@ -27,7 +27,7 @@ export default function InfoModal(props) {
             
           <Modal.Body>
             <div className = "row">
-              <div className="row" style={styles.playerWrapper}>
+              <div className="row" id={styles.smPlayerWrapper}>
                 <ReactPlayer
                   url = {props.pick_song.link}
                   className = {styles.reactPlayer}
@@ -49,8 +49,7 @@ export default function InfoModal(props) {
               </div>
             </div>
           </Modal.Body>
-          <Modal.Footer>
-          </Modal.Footer>
+          <Modal.Footer />
         </Modal>
       </>
     );
@@ -89,8 +88,7 @@ export default function InfoModal(props) {
               </div>
             </div>
           </Modal.Body>
-          <Modal.Footer>
-          </Modal.Footer>
+          <Modal.Footer />
         </Modal>
       </>
     );
