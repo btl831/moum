@@ -21,7 +21,7 @@
     width: 80%;
     height: 80%;
     top : 45px;
-    z-index: 2;
+    z-index: 1;
 }
 .smbtn {
     position: relative;
@@ -29,7 +29,7 @@
     height: 80%;
     right: 20px;
     top : 50px;
-    z-index: 2;
+    z-index: 1;
 }
 
 #slider {
