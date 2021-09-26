@@ -3,6 +3,7 @@ import { Button, Navbar, Container, Table, Figure, Spinner, Nav } from 'react-bo
 import { Link, Route, useHistory } from 'react-router-dom';
 
 import './App.css';
+import styles from './App.module.css'
 import axios from 'axios';
 import AlertSong from './AlertSong.js'
 import Slider from './Slider';
@@ -60,72 +61,100 @@ function App() {
         </Container>
       </Navbar>
 
-      {/* 첫번째 섹션 */}
+      {/* main page */}
       <body className="body">
-        <div className="container">
+        <Container>
           <Route exact path="/">
-            <br />
-            {/* 최상단 랜덤곡 */}
-            <Slider chart_info={chart_info} />
-            <br />
-            <br />
-
-            {/* 두번째 섹션 */}
             <div className="row">
-              <div className="col-md-7">
-                <hr />
-                <h6>가수별 Playlist</h6>
-                <hr />
-                <Container className="row">
-                  <div className="col-md-5 box">
-                    <Recommend />
-                  </div>
+              <Slider chart_info={chart_info} />
+            </div>
+            <br /><br />
 
-                  <div className="col-md-5 box">
+            {/* 가수별 Playlist */}
+            <div className="row">
+              <div className="col-md-6">
+                <hr />
+                <h5>가수별 Playlist</h5>
+                <hr />
+                <div className="row mt-5">
+                  <div className="col-sm-1 col-md-2" />
+                  <div className="col-sm-5 col-md-4" id={styles.box}>
                     <Recommend />
                   </div>
-                </Container>
+                  <div className="col-sm-5 col-md-4" id={styles.box}>
+                    <Recommend />
+                  </div>
+                  <div className="col-sm-1 col-md-2" />
+                </div>
+                
+                <div className="row">
+                <div className="col-sm-1 col-md-2" />
+                  <div className="col-sm-5 col-md-4" id={styles.box}>
+                    <Recommend />
+                  </div>
+                  <div className="col-sm-5 col-md-4" id={styles.box}>
+                    <Recommend />
+                  </div>
+                  <div className="col-sm-1 col-md-2" />
+                </div>
               </div>
 
-              <div className="col-md-5">
-                <h6 className="mr-10">TOP 100 &nbsp;&nbsp;
-                  <Link to="/chart"><Button className="secondary">더보기</Button></Link>
-                </h6>
-                <Chart chart_info={chart_info.slice(undefined, 5)} />
+              {/* TOP 100 */}
+              <div className="col-md-1" />
+              <div className="col-md-5 mt-5">
+                <div className="row">
+                  <div className="col-sm-10 col-md-10">
+                    <h5 className={styles.top100}>TOP 100</h5>
+                  </div>
+                  <div className="col-sm-2 col-md-2">
+                    <Link to="/chart">
+                      <button className={styles.btn}>
+                        <h2>&gt;</h2>
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="row mt-2">
+                  <Chart chart_info={chart_info.slice(undefined, 5)} />
+                </div>
               </div>
             </div>
             <br /><br /><hr />
 
-            {/* 세번째 섹션 */}
+            {/* 추가요청 게시판 */}
             <br /><br />
             <div className="row">
               <h3 className="col-md-11">추가요청 게시판</h3>
-              <Link to="/write" className="col-md-1"><Button >작성하기</Button></Link>
+              <Link to="/write" className="col-md-1">
+                <Button >작성하기</Button>
+              </Link>
 
               <div className="col-md-4 mt-2">
                 <Community></Community>
               </div>
-              <div className="col-md-8 mt-2 sub_community">
+              <div className="col-md-8 mt-2" id={styles.subCommunity}>
                 <a>여기에는 상세페이지 내용이 적힐 겁니다.</a>
               </div>
             </div>
           </Route>
 
+          {/* chart */}
           <Route path="/chart">
             <br />
             <Chart chart_info={chart_info} className="mt-20 mb-5" />
           </Route>
           <Route path="/write">
-            <div class="full">
+            <div className={styles.full}>
               <br />
               <WritePage />
               <Button onClick={() => { history.goBack() }}>돌아가기</Button>
             </div>
           </Route>
-        </div>
+        </Container>
 
+        {/* developer */}
         <Route path="/developer" >
-          <div class="full">
+          <div className={styles.full}>
             <Developer />
           </div>
         </Route>
