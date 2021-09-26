@@ -1,11 +1,11 @@
-.player-wrapper {
-    position: relative;
-    padding-top: 52.25%;
-}
-.react-player {
+.reactPlayer {
     position: absolute;
     top: 0px;
     left: 10px;
+}
+#playerWrapper {
+    position: relative;
+    padding-top: 52.25%;
 }
 #songinfo {
     border-left: 1px dashed rgb(175, 175, 175);

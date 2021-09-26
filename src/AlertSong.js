@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Modal, Button, Image } from 'react-bootstrap';
 import { useMediaQuery } from "react-responsive";
 import ReactPlayer from "react-player";
-import './AlertSong.css';
+import styles from './AlertSong.module.css';
 
 export default function InfoModal(props) {
   const [show, setShow] = useState(false);
@@ -27,12 +27,12 @@ export default function InfoModal(props) {
             
           <Modal.Body>
             <div className = "row">
-              <div className="row player-wrapper">
+              <div className="row" style={styles.playerWrapper}>
                 <ReactPlayer
                   url = {props.pick_song.link}
-                  className='react-player'
-                  width='100%'
-                  height='100%'
+                  className = {styles.reactPlayer}
+                  width = '100%'
+                  height = '100%'
                   playing
                   controls = {true}
                 />
@@ -69,18 +69,18 @@ export default function InfoModal(props) {
             
           <Modal.Body>
             <div className = "row">
-              <div className="col-md-7 player-wrapper">
+              <div className="col-md-7" id={styles.playerWrapper}>
                 <ReactPlayer
                   url = {props.pick_song.link}
-                  className = "react-player"
-                  width='100%'
-                  height='100%'
+                  className = {styles.reactPlayer}
+                  width = '100%'
+                  height = '100%'
                   playing
                   controls = {true}
                 />
               </div>
               <div className="col-md-5">
-                <div id="songinfo">
+                <div id={styles.songinfo}>
                   <Image src={props.pick_song.image} thumbnail />
                   <hr/>
                   <Alert variant="secondary">제목 : {props.pick_song.title}</Alert>
