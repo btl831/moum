@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Developer_intro(){
+export default function Developer() {
     return(
         <>
         <p>신봉규</p>
