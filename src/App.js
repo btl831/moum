@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Navbar, Container, Table, ListGroup, Figure, Spinner, Nav } from 'react-bootstrap';
+import { Button, Navbar, Container, Table, Figure, Spinner, Nav } from 'react-bootstrap';
 import { Link, Route, useHistory } from 'react-router-dom';
 
 import './App.css';
@@ -8,7 +8,9 @@ import AlertSong from './AlertSong.js'
 import Slider from './Slider';
 import GoogleButton from './Google_login';
 import WritePage from './Write';
-import Developer_intro from './Developer';
+import Developer from './Developer';
+import Recommend from './Recommend';
+import Community from './Community';
 
 function App() {
   let history = useHistory();
@@ -124,7 +126,7 @@ function App() {
 
         <Route path="/developer" >
           <div class="full">
-            <Developer_intro />
+            <Developer />
           </div>
         </Route>
         <br /><br /><br />
@@ -141,25 +143,6 @@ function App() {
       </footer>
     </div>
   );
-}
-
-function Recommend() {
-  return (
-    <Figure className="mt-3">
-      <Figure.Image
-        width={180}
-        height={180}
-        alt="180x180"
-        src="https://i.ytimg.com/vi/tHmc2mAXZSA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDLny-RWs_I2o50OjZfWAA1vyNHRg"
-        
-        // 미구현
-        onClick = {()=>{<AlertSong />}}
-      />
-      <Figure.Caption>
-        [Playlist] J-POP 입문은 이 밴드로! 2021 요루시카 노래 모음 Yorushika songs ヨルシカ (15곡)
-      </Figure.Caption>
-    </Figure>
-  )
 }
 
 function Chart(props) {
@@ -192,17 +175,6 @@ function Chart(props) {
 
       </tbody>
     </Table>
-  )
-}
-
-function Community() {
-  return (
-    <ListGroup variant="flush">
-      <ListGroup.Item variant="secondary">최근 게시물 1</ListGroup.Item>
-      <ListGroup.Item variant="secondary">최근 게시물 2</ListGroup.Item>
-      <ListGroup.Item variant="secondary">최근 게시물 3</ListGroup.Item>
-      <ListGroup.Item variant="secondary">최근 게시물 4</ListGroup.Item>
-    </ListGroup>
   )
 }
 
