@@ -16,16 +16,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.box{
-  border: 1px solid grey;
-  margin: 20px;
-  background-color: ghostwhite;
-  box-shadow: grey;
-  background-attachment: fixed;
-}
-.sub_community{
-  background-color: white;
-}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,8 +26,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.App-link {
-  color: #61dafb;
+.body{
+  width: 100%;
+  height :100%;
+  background : linear-gradient(to bottom, #ced1f8 30%, #ebf2ff, #ebf4ff);
 }
 .footer{
   background-color: grey;
@@ -47,15 +39,6 @@
   height: 40px; 
   padding: 10px;
   text-align: center;
-}
-.full {
-  width: 100%;
-  height :82vh;
-}
-.body{
-  background : linear-gradient(to bottom, #ced1f8 30%, #ebf2ff, #ebf4ff);
-  width: 100%;
-  height :100%;
 }
 
 @keyframes App-logo-spin {
