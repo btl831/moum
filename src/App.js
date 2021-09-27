@@ -12,6 +12,8 @@ import WritePage from './Write';
 import Community from './Community';
 import Recommend from './Recommend';
 import Developer from './Developer';
+import ChartPage from './Chart';
+
 
 function App() {
   let history = useHistory();
@@ -197,39 +199,6 @@ function App() {
       </footer>
     </div>
   );
-}
-
-function Chart(props) {
-  return (
-    <Table striped bordered hover variant="dark">
-      <thead>
-        <tr>
-          <th>순위</th>
-          <th>앨범</th>
-          <th>제목</th>
-          <th>가수</th>
-          <th>듣기</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        {
-          props.chart_info.map((a, i) => {
-            return (
-              <tr>
-                <td>{a.id}</td>
-                <td><Figure.Image src={a.image} width={50} height={50} /></td>
-                <td>{a.title}</td>
-                <td>{a.singer}</td>
-                <td><AlertSong pick_song={a} i={i} /></td>
-              </tr>
-            )
-          })
-        }
-
-      </tbody>
-    </Table>
-  )
 }
 
 export default App;
