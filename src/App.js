@@ -123,7 +123,7 @@ function App() {
                     </div>
                   </div>
                   <div className="row mt-2">
-                    <Chart chart_info={chart_info.slice(undefined, 5)} />
+                    <ChartPage chart_info={chart_info.slice(undefined, 5)} />
                   </div>
                   <div className="row" style={{ height:"100px"}} />
                 </div>
@@ -166,7 +166,7 @@ function App() {
         {/* chart */}
         <Route path="/chart">
           <br />
-          <Chart chart_info={chart_info} className="mt-20 mb-5" />
+          <ChartPage chart_info={chart_info} className="mt-20 mb-5" />
         </Route>
 
         
