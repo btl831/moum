@@ -1,0 +1,30 @@
+"Git pull" => merge
+  ㄴgit pull [저장소명] [브랜치명]
+  ㄴ작업 시작 전, pull을 하고 진행하는 것이 좋다.
+"Git fetch" => no merge (버전관리)
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+① unstaging files => 선별 전 파일들
+
+② staging files => 선별된 파일들 (Repository에 올라갈 파일들)
+    ㄴgit add를 통하여 commit 이전의 단계인 "stage area"에 올린다.
+    ㄴ파일들을 선택적으로 staging하여 원하는 파일만 올릴 수 있다.
+    ㄴgit add [파일이름]
+
+③ commit files => 커밋된 파일들 (올리기 전 포장된 파일들)
+    ㄴstaging된 모든 파일을 커밋한다.
+    ㄴgit commit -m "Commit Message"
+
+④ git push => 커밋된 파일들을 Repository에 실제로 올림
+    ㄴgit push [저장소명] [브랜치명]
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+* git status : 커밋된 파일을 추적하여 상태를 보고한다.
+  ㄴ자주 살펴보면서 상태를 확인하는 것이 좋다고 함.
+* git branch : 현재 파일 경로의 브랜치 명을 반환한다.
+* git log : 커밋 기록을 확인한다.
+* git checkout [브랜치명] : 해당 브랜치로 전환한다.
+* git clone -b {branch_name} --single-branch {저장소 URL}
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+1-1. git rm -rf {파일 및 폴더명} : 원격 저장소와 로컬 저장소 모두 삭제
+1-2. git rm -r {파일 및 폴더명} : 원격 저장소에 있는 것만 삭제
+2. git commit -m "삭제한 이유"
+3. git push [-u] origin {브랜치명}
