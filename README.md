@@ -18,4 +18,6 @@ BTL831의 첫 프로젝트 도전기
 ------------
 추가 사항)
   회의는 매주 화요일이며 진행사항이 끝났을경우 추가 회의 진행 및 회의록 매주 작성 예정
+  
+사이트 완성 
 ![image](https://user-images.githubusercontent.com/81786969/152913388-8593cbff-9f15-413a-9fc9-30eaecbf297b.png)
