@@ -28,3 +28,4 @@
 1-2. git rm -r {파일 및 폴더명} : 원격 저장소에 있는 것만 삭제
 2. git commit -m "삭제한 이유"
 3. git push [-u] origin {브랜치명}
+4. git push origin --delete {브랜치명}
