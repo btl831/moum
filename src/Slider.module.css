@@ -1,0 +1,40 @@
+#smcard {
+    position: relative;
+    padding-left : 30px;
+}
+.card {
+    position: relative;
+    height: 110%;
+    max-height: 30rem;
+    max-width: 18rem;
+    margin : 10px;
+}
+.cardimg {
+    position: relative;
+    width: 90%;
+    max-height: 18rem;
+    margin : 15px;
+}
+
+.btn {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    top : 45px;
+    z-index: 1;
+}
+.smbtn {
+    position: relative;
+    width: 300%;
+    height: 80%;
+    right: 20px;
+    top : 50px;
+    z-index: 1;
+}
+
+#slider {
+    height: 32rem;
+    padding-left:35px;
+    display:flex;
+    justify-content:center;
+}
