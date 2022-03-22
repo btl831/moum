@@ -13,7 +13,11 @@ import Community from './Community';
 import Recommend from './Recommend';
 import Developer from './Developer';
 import ChartPage from './Chart';
+import Login from './Login.js';
 
+//firebase 적용
+import {db} from './index.js';
+import "firebase/firestore";
 
 function App() {
   let history = useHistory();
@@ -60,7 +64,9 @@ function App() {
                 <Nav.Link href="/chart">TOP 100</Nav.Link>
                 <Nav.Link href="/write">Write</Nav.Link>
               </Nav>
-              <GoogleButton />
+
+              {/* <GoogleButton /> */}
+              <Button className='primary' href={"/login"}>로그인</Button>
           </Navbar>
         </Container>
       </div>
@@ -169,6 +175,12 @@ function App() {
           <ChartPage chart_info={chart_info} className="mt-20 mb-5" />
         </Route>
 
+        {/* login */}
+        <Route path ="/login">
+          <Login></Login>
+          <br/>
+
+        </Route>
         
         {/* write */}
         <Route path="/write">
