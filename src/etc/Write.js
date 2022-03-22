@@ -1,5 +1,5 @@
 import React from "react";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
 export default function WritePage(){
     return(
