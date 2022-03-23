@@ -48,7 +48,7 @@ function App() {
         <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
         <Route path="/chart" render={() => <ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
         <Route path="/write" component={WritePage} />
-        <Route path ="/login" component={Login} />
+        <Route path="/login" component={Login} />
         <Route path="/developer" component={Developer} />
       </body>
       <Footer />
