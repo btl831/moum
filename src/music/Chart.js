@@ -3,6 +3,7 @@ import { Table, Figure, Pagination, Card, Button } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import { CSSTransition } from "react-transition-group";
 import AlertSong from './AlertSong.js'
+
 export default function ChartPage(props) {
     let [page, setPage] = useState(1);
     let items = [];
@@ -11,6 +12,7 @@ export default function ChartPage(props) {
     if (props.chart_info.length < 10)
         return (
             <>
+                <br />
                 <Chart chart_info={props.chart_info}></Chart>
             </>
         )
@@ -29,6 +31,7 @@ export default function ChartPage(props) {
         );
         return (
             <>
+                <br />
                 <div className="row">
                     <div className="col-sm-5">
                         {/* 아직해결못함 */}
