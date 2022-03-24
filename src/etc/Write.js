@@ -1,41 +1,48 @@
-import React from "react";
+import React,{useState} from "react";
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-
+import {db} from '../firebase/fBase';
 export default function WritePage(){
+    const [title, setTitle] = useState('');
+    const [content, setConent] = useState('');
     let history = useHistory();
+    // 바뀌는 것에 대한 메소드
+    const onChange = (event) => {
+        const {target: {id, value}} = event;
+        if (id==='title') {
+            setTitle(value);
+        }
+        else if (id=== "content") {
+            setConent(value);
+        }
+    }
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        var 저장할거 = { 
+            title : title,
+            content : content
+
+          }
+          db.collection('product').add(저장할거).then((result)=>{
+            window.location.href = '/write'
+          }).catch((error)=>{
+            console.log(error)
+          })  
+    }
     return(
-        <>
+    <>
         <div className="full">
-            <br />
-            <div className="row">
-                <InputGroup className="mb-3">
-                    <InputGroup.Text id="title">제목</InputGroup.Text>
-                    <FormControl
-                        aria-label="제목"
-                        aria-describedby="inputGroup-sizing-default"
-                    />
-                </InputGroup>
-                <InputGroup className="mb-3">
-                    <InputGroup.Text id="writer">작성자</InputGroup.Text>
-                    <FormControl
-                        aria-label="writer"
-                        aria-describedby="inputGroup-sizing-default"
-                    />
-                </InputGroup>
-                <InputGroup>
-                    <InputGroup.Text id ="content">내용</InputGroup.Text>
-                    <FormControl as="textarea" aria-label="내용" />
-                </InputGroup>
+            <div class="container mt-3">
+                <input type="text" class="form-control mt-2" id="title" placeholder="title" onChange={onChange}/>
+                <textarea class="form-control mt-2" id="content"onChange={onChange}placeholder="content"></textarea>
+                <input type="text" class="form-control mt-2" id="price" placeholder="price"onChange={onChange}/>
+                <input class="form-control mt-2" type="file" id="image"onChange={onChange}/>
+                <button class="btn btn-danger mt-3" id="send"onClick={onSubmit}>올리기</button>
             </div>
-            <br />
-            <Button variant="secondary" className="mt-8 mr-5"
-                onclick={()=>{
-                    // 여기에다가 값보내는 메소드 적으면 댐 axios.put
-                }}>저장
-            </Button>
             <Button onClick={() => { history.goBack() }}>돌아가기</Button>
+            
         </div>
-        </>
+    </>
     )
 }

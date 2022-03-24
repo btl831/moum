@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from '../App.module.css'
 import Slider from '../music/Slider';
-import Community from '../etc/Community';
+import Community from '../community/Community.js';
 import Recommend from '../etc/Recommend';
 import ChartPage from '../music/Chart';
 
@@ -96,6 +96,7 @@ function Body(props) {
                     </div>
                     <div className="col-md-7 mt-3" id={styles.subCommunity}>
                     <a>여기에는 상세페이지 내용이 적힐 겁니다.</a>
+                    <Button onClick={()=>{window.location.href = "./list"}}></Button>
                     </div>
                     <div className="col-md-1" />
                 </div>

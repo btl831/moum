@@ -11,9 +11,7 @@ import WritePage from './etc/Write';
 import Developer from './etc/Developer';
 import Login from './firebase/Login';
 import ChartPage from './music/Chart';
-
-//firebase 적용
-import "firebase/firestore";
+import ListPage from './community/ListPage.js';
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -51,6 +49,7 @@ function App() {
         <Route path="/write" component={WritePage} />
         <Route path="/login" component={Login} />
         <Route path="/developer" component={Developer}/>
+        <Route path="/list" component={ListPage}/>
         </div>
       
         <Footer/>
