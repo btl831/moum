@@ -103,7 +103,6 @@ function Body(props) {
                 </div>
             </div>
         </Container>
-        <br /><br /><br />
         </>
     )
 }
