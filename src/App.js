@@ -41,20 +41,18 @@ function App() {
         />
       </head>
       <body className='body'>
-      <Header />
-      <div className="body-wrapper">
-        <div className='body-content'>
-        <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
-        <Route path="/chart" render={() => <ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
-        <Route path="/write" component={WritePage} />
-        <Route path="/login" component={Login} />
-        <Route path="/developer" component={Developer}/>
-        <Route path="/list" component={ListPage}/>
+        <Header />
+        <div className="body-wrapper">
+          <div className='body-content'>
+            <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
+            <Route path="/chart" render={() => <ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
+            <Route path="/write" component={WritePage} />
+            <Route path="/login" component={Login} />
+            <Route path="/developer" component={Developer}/>
+            <Route path="/list" component={ListPage}/>
+          </div>
+          <Footer/>
         </div>
-      
-        <Footer/>
-      
-      </div>
       </body>
     </div>
    

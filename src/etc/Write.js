@@ -1,7 +1,8 @@
 import React,{useState} from "react";
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import {db} from '../firebase/fBase';
+
 export default function WritePage(){
     const [title, setTitle] = useState('');
     const [content, setConent] = useState('');

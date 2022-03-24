@@ -5,7 +5,6 @@ import './ListPage.css';
 export default function ListPage() {
     const [text,setText] = useState([]);
     useEffect(()=>{
-       
         db.collection('Comment').get().then((result)=>{
             var array =[];
             result.forEach((doc)=>{
@@ -13,10 +12,8 @@ export default function ListPage() {
             });
             
             setText(array);
-
         })
     });
-    
     
     return(
         <>
@@ -36,7 +33,7 @@ export default function ListPage() {
                 )
             })
         }
-       </div>
+        </div>
         </>
     )
 }

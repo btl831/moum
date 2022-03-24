@@ -32,7 +32,6 @@ export default function Header() {
                     userObj != null
                     ? (<div className= "text-white">{userObj.user.displayName}님 환영합니다!  <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
                     :<Button className='primary' href={"/login"}>로그인</Button>
-
                 }
                 
             </Navbar>
