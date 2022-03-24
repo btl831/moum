@@ -7,6 +7,10 @@ export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
     var userObj = JSON.parse(localStorage.getItem('user'));
     
+    useEffect(()=>
+    { console.log('값이 바뀜') }, 
+    [userObj]);
+
 
     return(
         <div className={styles.sticky}>
@@ -26,7 +30,7 @@ export default function Header() {
                 </Nav>
                 {
                     userObj != null
-                    ? <a className= "text-white">{userObj.user.displayName}님 환영합니다!</a>
+                    ? (<div className= "text-white">{userObj.user.displayName}님 환영합니다!  <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
                     :<Button className='primary' href={"/login"}>로그인</Button>
 
                 }

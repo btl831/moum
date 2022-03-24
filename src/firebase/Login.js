@@ -19,6 +19,7 @@ const Login = () => {
         const data = await authService.signInWithPopup(provider);
         console.log(data);
         localStorage.setItem('user',JSON.stringify(data));
+        window.location.href = "/";
     }
 
     // 바뀌는 것에 대한 메소드
@@ -44,6 +45,7 @@ const Login = () => {
                 // login
                 data = await authService.signInWithEmailAndPassword(email, password);
                 localStorage.setItem('user',JSON.stringify(data));
+                window.location.href = "/";
             }
             
             
