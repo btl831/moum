@@ -18,6 +18,7 @@ const Login = () => {
         }
         const data = await authService.signInWithPopup(provider);
         console.log(data);
+        localStorage.setItem('user',JSON.stringify(data));
     }
 
     // 바뀌는 것에 대한 메소드
@@ -31,7 +32,7 @@ const Login = () => {
         }
     }
 
-    // 등록하는 메소드
+    // 로그인 및 생성
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -42,8 +43,10 @@ const Login = () => {
             } else {
                 // login
                 data = await authService.signInWithEmailAndPassword(email, password);
+                localStorage.setItem('user',JSON.stringify(data));
             }
-            console.log(data);
+            
+            
         } catch(error) {
         console.log(error)
         }
