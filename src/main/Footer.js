@@ -6,7 +6,6 @@ export default function Footer() {
             Copyright &copy; Btl_831 2021<br/>
             <a onClick={() => { window.location.href = "/developer" }} style={{ color: "white" }}> developer</a>
             </a>
-            
         </div>
         </footer>
     )
