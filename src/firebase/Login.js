@@ -8,7 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [newAccount, setNewAccount] = useState(true);	// 새로운 유저인지 확인(초기값: true)
-
+    const [displayName,setdisplayName]  = useState('');
     // 구글버튼 클릭 함수
     const onGoogleClick = async (event) => {
         const {target: {name}} = event;
@@ -31,6 +31,9 @@ const Login = () => {
         else if (name=== "password") {
             setPassword(value);
         }
+        else if (name == "displayName"){
+            setdisplayName(value)
+        }
     }
 
     // 로그인 및 생성
@@ -40,7 +43,13 @@ const Login = () => {
             let data;
             if (newAccount) {
                 // create account
-                data = await authService.createUserWithEmailAndPassword(email, password);
+                data = await authService.createUserWithEmailAndPassword(email, password).then(result =>{
+                    result.user.updateProfile({
+                        displayName : displayName
+                    });
+                }).catch(err=>{
+                    console.error(err);
+                })
             } else {
                 // login
                 data = await authService.signInWithEmailAndPassword(email, password);
@@ -85,7 +94,18 @@ const Login = () => {
                     Your password must be 8-20 characters long, contain letters and numbers, and
                     must not contain spaces, special characters, or emoji.
                 </Form.Text>
-
+                {
+                newAccount
+                ? <Form.Control
+                name="displayName" 
+                type="displayName"
+                placeholder="displayName" 
+                required
+                onChange={onChange}
+                />
+                :
+                null
+                }
 
                 <input type="submit" value={ newAccount ? "Create Account" : "Login" } />
                 <hr/>
