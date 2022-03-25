@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {db} from '../firebase/fBase';
-import './ListPage.css';
+import { ListGroup,Badge } from 'react-bootstrap';
+import './ListPage.module.css';
 
 export default function ListPage() {
     const [text,setText] = useState([]);
@@ -18,21 +19,32 @@ export default function ListPage() {
     return(
         <>
         <div class="container mt-3">
+            <ListGroup as="ol" numbered>
         {
             text.map((a,i)=>{
                 return(
-                    <div class="product">
-                    <div class="thumbnail" ></div>
-                    <div class="flex-grow-1 p-4">
-                      <h5 class="title">{a.context}</h5>
-                      <p class="date">{a.title}</p>
-                      <p class="price"></p>
-                      <p class="float-end"></p>
-                    </div>
-                    </div>
+                    <>
+                        
+                        <ListGroup.Item
+                            as="li"
+                            className="d-flex justify-content-between align-items-start"
+                            
+                        >
+                            <div className="ms-2 me-auto">
+                            <div className="fw-bold" onClick={()=>{window.location.href = "/detail/{a.id}"}}
+                            >{i}.{a.title}</div>
+                            {a.context}
+                            </div>
+                            <Badge bg="primary" pill>
+                            14
+                            </Badge>
+                        </ListGroup.Item>
+                        
+                    </>
                 )
             })
         }
+            </ListGroup>
         </div>
         </>
     )

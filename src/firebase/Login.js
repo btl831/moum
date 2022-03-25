@@ -7,7 +7,7 @@ import { Button, Container,Form } from 'react-bootstrap'
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [newAccount, setNewAccount] = useState(true);	// 새로운 유저인지 확인(초기값: true)
+    const [newAccount, setNewAccount] = useState(false);	// 로그인으로 먼저 들어올꺼니깐(초기 False)
     const [displayName,setdisplayName]  = useState('');
     // 구글버튼 클릭 함수
     const onGoogleClick = async (event) => {
