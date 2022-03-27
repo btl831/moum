@@ -8,8 +8,12 @@ export default function Detail() {
     let [item,setItems] = useState([]);
     
     useEffect(()=>{
-        db.collection('Comment').doc(params.id).get().then((result)=>{
-           console.log(result.data());
+        db.collection('Comment').get().then((result)=>{
+            var array =[];
+            result.forEach((doc)=>{
+                array.push(doc.data());
+            });
+           setItems(array[params.id]);
         })
     },[]);
     
@@ -19,13 +23,11 @@ export default function Detail() {
             <p>{`${params.id} 상세페이지입니다. `}</p>
             <div class="detail-pic my-4"/>
             <div>
-                {/*
-                <h5>{item.context}</h5>
+                <h5>제목 : {item.title}</h5>
                 <hr/>
-                <h5 class="title">{item.title}</h5>
+                <h5 class="title">내용 : {item.context}</h5>
                 <p class="date">올린날짜</p>
                 <p class="price">가격</p>
-                */}
             </div>
         </div>
         </>

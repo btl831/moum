@@ -12,10 +12,9 @@ export default function ListPage() {
             result.forEach((doc)=>{
                 array.push(doc.data());
             });
-            
             setText(array);
         })
-    });    
+    },[]);    
 
     return(
         <>
@@ -29,7 +28,7 @@ export default function ListPage() {
                         key = {i}
                     >
                         <div className="ms-2 me-auto">
-                            <a className="fw-bold" href={'/detail/' + a.id} style={{color:"black"}}>
+                            <a className="fw-bold" href={'/detail/' + i} style={{color:"black"}}>
                                 {i}.{a.title}
                             </a><br/>
                             {a.context}

@@ -5,31 +5,30 @@ import {db} from '../firebase/fBase';
 
 export default function WritePage(){
     const [title, setTitle] = useState('');
-    const [content, setConent] = useState('');
+    const [context, setConent] = useState('');
     let history = useHistory();
     // 바뀌는 것에 대한 메소드
     const onChange = (event) => {
         const {target: {id, value}} = event;
-        if (id==='title') {
+        if (id === 'title') {
             setTitle(value);
         }
-        else if (id=== "content") {
+        else if (id === "content") {
             setConent(value);
         }
     }
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        var 저장할거 = { 
+        var data = { 
             title : title,
-            content : content
-
-          }
-          db.collection('product').add(저장할거).then((result)=>{
+            context : context
+        }
+        db.collection('Comment').add(data).then(()=>{
             window.location.href = '/write'
-          }).catch((error)=>{
+            }).catch((error)=>{
             console.log(error)
-          })  
+        })  
     }
     return(
     <>
@@ -42,7 +41,6 @@ export default function WritePage(){
                 <button class="btn btn-danger mt-3" id="send"onClick={onSubmit}>올리기</button>
             </div>
             <Button onClick={() => { history.goBack() }}>돌아가기</Button>
-            
         </div>
     </>
     )
