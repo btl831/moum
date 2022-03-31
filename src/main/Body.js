@@ -81,13 +81,14 @@ function Body(props) {
                 <div className="row">
                     <div className="col-sm-4 col-md-3" />
                     <div className="col-sm-4 col-md-6" >
-                    <h3>요청 게시판</h3>
+                        <h3>요청 게시판</h3>
                     </div>
-                    <div className="col-sm-4 col-md-3">
-                    <Link to="/write">
-                        <Button>글쓰기</Button>
-                    </Link>
+                    <div className="col-sm-3 col-md-2">
+                        <Button onClick={()=>window.location.href='/write'}>글쓰기</Button>
+                        &nbsp;
+                        <Button onClick={()=>window.location.href='/list'}>더보기</Button>
                     </div>
+                    <div className="col-sm-1 col-md-1" />
                 </div>
                 <div className="row" >
                     <div className="col-md-1" />
@@ -96,7 +97,6 @@ function Body(props) {
                     </div>
                     <div className="col-md-7 mt-3" id={styles.subCommunity}>
                     <a>여기에는 상세페이지 내용이 적힐 겁니다.</a>
-                    <Button onClick={()=>{window.location.href = "./list"}}></Button>
                     </div>
                     <div className="col-md-1" />
                 </div>
