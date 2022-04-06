@@ -1,6 +1,6 @@
 // App.js
 import React, { useState } from 'react';
-import { authService,firebaseInstance } from './fBase';
+import { authService,firebaseInstance,db } from './fBase';
 import { Button, Container,Form } from 'react-bootstrap'
 
 // 로그인 컴포넌트 작성
@@ -44,6 +44,16 @@ const Login = () => {
             if (newAccount) {
                 // create account
                 data = await authService.createUserWithEmailAndPassword(email, password).then(result =>{
+
+                    // store 저장
+                    var userprofile = {
+                        displayName : displayName,
+                        email : email
+                    }
+
+                    db.collection('user').doc(result.user.uid).set(userprofile);
+
+
                     result.user.updateProfile({
                         displayName : displayName
                     });
@@ -52,9 +62,12 @@ const Login = () => {
                 })
             } else {
                 // login
-                data = await authService.signInWithEmailAndPassword(email, password);
-                localStorage.setItem('user',JSON.stringify(data));
-                window.location.href = "/";
+                await authService.signInWithEmailAndPassword(email, password).then((result)=>{
+                    console.log(result.user)
+                    localStorage.setItem('user',JSON.stringify(result.user));
+                    window.location.href = "/";
+                });
+                
             }
             
             

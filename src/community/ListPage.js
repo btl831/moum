@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {db} from '../firebase/fBase';
-import { ListGroup,Badge } from 'react-bootstrap';
+import { ListGroup,Button } from 'react-bootstrap';
 import './ListPage.module.css';
 
 export default function ListPage() {
@@ -24,16 +24,23 @@ export default function ListPage() {
                 text.map((a,i)=>
                     <ListGroup.Item
                         as="li"
-                        className="d-flex justify-content-between align-items-start"
+                        className="d-flex justify-content-between align-items-start mb-3"
                         key = {i}
                     >
-                        <div className="ms-2 me-auto">
-                            <a className="fw-bold" href={'/detail/' + i} style={{color:"black"}}>
-                                {i}.{a.title}
-                            </a><br/>
-                            {a.context}
+                        <div className='row'>
+                            <div className="ms-2 col-10">
+                                <a className="fw-bold" href={'/detail/' + i} style={{color:"black"}}>
+                                    {i}.{a.title}
+                                </a>
+                                <img src= {a.image} width ="10%"></img>
+                                <br/>
+                                {a.context}
+                            </div>
+    
+                            <div className="ms-2 col-2">
+                                <Button>수정하기</Button>
+                            </div>
                         </div>
-                        <Badge bg="primary" pill> 14 </Badge>
                     </ListGroup.Item>
                 )
             }
