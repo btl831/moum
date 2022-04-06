@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import {db} from '../firebase/fBase';
+import {db,storage} from '../firebase/fBase';
 
 export default function WritePage(){
     const [title, setTitle] = useState('');
@@ -18,17 +18,42 @@ export default function WritePage(){
         }
     }
 
-    const onSubmit = async (event) => {
+    const uploadimg = async(event)=>{
         event.preventDefault();
-        var data = { 
-            title : title,
-            context : context
-        }
-        db.collection('Comment').add(data).then(()=>{
-            window.location.href = '/write'
-            }).catch((error)=>{
-            console.log(error)
-        })  
+        var file = document.querySelector('#image').files[0];
+        var storageRef = storage.ref();
+        var path = storageRef.child('image/'+file.name);
+        var setupload = path.put(file);
+
+        setupload.on('state_changed',
+            null,
+            (error) => {
+                console.error('실패사유:',error);
+            },
+            // 성공시
+            () =>{
+                setupload.snapshot.ref.getDownloadURL().then((url)=>{
+                    // 정보 입력
+                    var data = { 
+                        title : title,
+                        context : context,
+                        date : new Date(),
+                        image : url,
+                        uid : JSON.parse(localStorage.getItem('user')).uid,
+                        displayName: JSON.parse(localStorage.getItem('user')).displayName
+                    }
+                    db.collection('Comment').add(data).then(()=>{
+                        window.location.href = '/'
+                        }).catch((error)=>{
+                        console.log(error)
+                    })  
+
+                })
+                
+            }
+
+
+        )
     }
     return(
     <>
@@ -36,10 +61,10 @@ export default function WritePage(){
             <div class="container mt-3">
                 <input type="text" class="form-control mt-2" id="title" placeholder="title" onChange={onChange}/>
                 <textarea class="form-control mt-2" id="content"onChange={onChange}placeholder="content"></textarea>
-                <input type="text" class="form-control mt-2" id="price" placeholder="price"onChange={onChange}/>
                 <input class="form-control mt-2" type="file" id="image"onChange={onChange}/>
-                <button class="btn btn-danger mt-3" id="send"onClick={onSubmit}>올리기</button>
             </div>
+            
+            <button class="btn btn-danger mt-3" id="send"onClick={uploadimg}>올리기</button>
             <Button onClick={() => { history.goBack() }}>돌아가기</Button>
         </div>
     </>

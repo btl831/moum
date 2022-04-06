@@ -4,7 +4,6 @@ import styles from '../App.module.css'
 import {authService} from '../firebase/fBase.js'
 
 export default function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
     var userObj = JSON.parse(localStorage.getItem('user'));
     
     useEffect(()=>
@@ -30,7 +29,7 @@ export default function Header() {
                 </Nav>
                 {
                     userObj != null
-                    ? (<div className= "text-white">{userObj.user.displayName}님 환영합니다!  <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
+                    ? (<div className= "text-white">{userObj.displayName}님 환영합니다!  <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
                     :<Button className='primary' href={"/login"}>로그인</Button>
                 }
                 
