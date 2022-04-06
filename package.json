@@ -19,7 +19,7 @@
     "react-player": "^2.9.0",
     "react-responsive": "^9.0.0-beta.4",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "react-transition-group": "^4.4.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
@@ -58,5 +58,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "***BTL831팀의 두번째 프로젝트***",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btl831/moum.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/btl831/moum/issues"
+  },
+  "homepage": "https://github.com/btl831/moum#readme"
 }
