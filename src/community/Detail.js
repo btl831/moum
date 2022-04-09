@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { db } from '../firebase/fBase';
-import './Detail.module.css';
+import './Detail.css';
 
 export default function Detail() {
     const params = useParams();
