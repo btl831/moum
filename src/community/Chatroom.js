@@ -4,10 +4,9 @@ import { db } from '../firebase/fBase';
 
 export default function Chatroom() {
     var myuid = JSON.parse(localStorage.getItem('user')).uid;
-    var chatlst;
     var [chat,setchat] = useState([]);
-    let [inputValue,setInputValue] = useState("");
-    var chatid= "Cpk5XOAwDtkh2YNBwW8s";
+    let [inputValue,setInputValue] = useState();
+    let [chatid,setChatId]= useState("");
     useEffect(() => {
         db.collection('chatroom').where('who', 'array-contains', myuid).get().then((result) => {
             var array = [];
@@ -15,18 +14,28 @@ export default function Chatroom() {
                 array.push(doc.data());
                 let tagArea = document.getElementsByClassName('chat-list')[0];
                 let new_Tag = document.createElement('li');
-                new_Tag.setAttribute('class','list-group-item')
-                new_Tag.innerHTML = '<h6 className = "chat-lst">'+doc.data().title+'</h6> <h6 class="text-small">'+doc.id+'</h6>';
+                new_Tag.setAttribute('class','list-group-item');
+                new_Tag.setAttribute('id','msg');
+                new_Tag.innerHTML = '<h6 className = "chat-lst">'+doc.data().title+'</h6> <h6 class="text-small" id ="doc_id">'+doc.id+'</h6>';
                 tagArea.appendChild(new_Tag);
+                let element = document.getElementById('msg');  
+                element.addEventListener('click', read_msg);
+                
             });
             
         })
     }, []);
 
 
+
+    // document.getElementsByClassName('list-group-item').onClick
+    //     chatid = this.document.getElementsByClassName('text-small');
+    //     read_msg();
+    // })
     // 채팅 읽어오는 법
     const read_msg = async (event) => {
-
+        setChatId(event.target.value)
+        console.log(chatid);
         // event bubbling 방지하는 함수
         event.preventDefault();
         
