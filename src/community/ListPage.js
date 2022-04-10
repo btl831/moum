@@ -19,7 +19,7 @@ export default function ListPage() {
     return(
         <>
         <div className="full container mt-3">
-            <ListGroup as="ol" numbered>
+            <ListGroup as="ol" >
             {
                 text.map((a,i)=>
                     <ListGroup.Item

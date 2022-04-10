@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import styles from '../App.module.css'
-import {authService} from '../firebase/fBase.js'
 
 export default function Header() {
     var userObj = JSON.parse(localStorage.getItem('user'));
@@ -26,6 +25,8 @@ export default function Header() {
                 <Nav className="me-auto">
                 <Nav.Link href="/chart">TOP 100</Nav.Link>
                 <Nav.Link href="/write">Write</Nav.Link>
+                <Nav.Link href="/chatroom">채팅방</Nav.Link>
+                
                 </Nav>
                 {
                     userObj != null

@@ -52,11 +52,10 @@ const Login = () => {
                     }
 
                     db.collection('user').doc(result.user.uid).set(userprofile);
-
-
                     result.user.updateProfile({
                         displayName : displayName
                     });
+                    alert("가입이 성공적으로 되었습니다. 로그인 버튼을 누르고 진행해주세요.");
                 }).catch(err=>{
                     console.error(err);
                 })

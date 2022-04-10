@@ -13,6 +13,7 @@ import Login from './firebase/Login';
 import ChartPage from './music/Chart';
 import ListPage from './community/ListPage.js';
 import Detail from './community/Detail';
+import Chatroom from './community/Chatroom.js'
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -52,6 +53,7 @@ function App() {
             <Route path="/developer" component={Developer}/>
             <Route path="/list" component={ListPage}/>
             <Route path="/detail/:id" component = {Detail}/>
+            <Route path="/chatroom" component={Chatroom}/>
           </div>
           <Footer/>
         </div>
