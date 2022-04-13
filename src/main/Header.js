@@ -25,7 +25,14 @@ export default function Header() {
                 <Nav className="me-auto">
                 <Nav.Link href="/chart">TOP 100</Nav.Link>
                 <Nav.Link href="/write">Write</Nav.Link>
-                <Nav.Link href="/chatroom">채팅방</Nav.Link>
+                {
+                    userObj != null
+                    ? (<Nav.Link href="/chatroom">채팅방</Nav.Link>)
+                    : null
+
+                }
+                <Nav.Link href = "/game/wordle/">Wordle</Nav.Link>
+                
                 
                 </Nav>
                 {

@@ -58,6 +58,7 @@ const Login = () => {
                     alert("가입이 성공적으로 되었습니다. 로그인 버튼을 누르고 진행해주세요.");
                 }).catch(err=>{
                     console.error(err);
+                    alert("로그인이 되지않았습니다. 다시 시도해주세요.");
                 })
             } else {
                 // login
