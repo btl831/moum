@@ -5,19 +5,18 @@ import { Table } from 'react-bootstrap';
 
 export default function Wordle_Ranking(){
     let [item,setItems] = useState([]);
+    
     useEffect(()=>{
-        var users = db.collection("wordle").limit(10).orderBy("score");
-        users.get().then(query => {
-        // var array = query.map(a => a.data());
-        // console.log(array);
-        var array = [];
-        query.forEach(function (doc) {
-          array.push(doc.data());
-        });
-        setItems(array);
-        console.log(item);
-      });
-    })
+        db.collection('wordle').orderBy('score').get().then((result)=>{
+            var array =[];
+            result.forEach((doc)=>{
+                array.push(doc.data());
+                
+            });
+           setItems(array);
+           console.log(item);
+        })
+    },[item.values])
 
     return(
         <>
@@ -34,7 +33,7 @@ export default function Wordle_Ranking(){
                             <tr>
                             <th>#</th>
                             <th>이름</th>
-                            <th>점수</th>
+                            <th>시도 횟수</th>
                             <th>날짜</th>
                             </tr>
                         </thead>
@@ -65,7 +64,6 @@ export default function Wordle_Ranking(){
                                 })
                             }
                         </tbody>
->>>>>>> 3529aa9ca05f69fa6a8d209976f0c1128e229afb
                     </Table>
                 </div>
             </div>
