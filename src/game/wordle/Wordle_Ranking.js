@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import './Wordle_Ranking.css'
 import {db} from '../../firebase/fBase'
 import { Table } from 'react-bootstrap';
@@ -19,7 +19,6 @@ export default function Wordle_Ranking(){
       });
     })
 
-
     return(
         <>
         <div className='container'>
@@ -30,38 +29,46 @@ export default function Wordle_Ranking(){
 
             <div className = "ranking_chart_form mt-5">
                 <div className='chart'>
-                <Table striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                        <th>#</th>
-                        <th>이름</th>
-                        <th>점수</th>
-                        <th>날짜</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            item.map((a,i)=>{
-                                return(
-                                    <>
-                                    <tr>
-                                    <td>{i}</td>
-                                    <td>{a.i.displayName}</td>
-                                    <td>{a.i.score}</td>
-                                    <td>{a.i.date}</td>
-                                    </tr>
-                                    </>
-                                )
-                                
-                                        
-                            })
-                        }
-                        %
-                    </tbody>
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>이름</th>
+                            <th>점수</th>
+                            <th>날짜</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                item.map((a,i)=>{
+                                    return(
+                                        <>
+                                        <tr>
+                                            <td>{i}</td>
+                                            <td>{a.displayName}</td>
+                                            <td>{a.score}</td>
+                                            <td>
+                                                {
+                                                    Intl.DateTimeFormat('en-US', {
+                                                        year: 'numeric',
+                                                        month: '2-digit',
+                                                        day: '2-digit',
+                                                        hour: '2-digit',
+                                                        minute: '2-digit',
+                                                        second: '2-digit',
+                                                    }).format(a.date.seconds * 1000)
+                                                }
+                                            </td>
+                                        </tr>
+                                        </>
+                                    )      
+                                })
+                            }
+                        </tbody>
+>>>>>>> 3529aa9ca05f69fa6a8d209976f0c1128e229afb
                     </Table>
                 </div>
             </div>
-
         </div>
         </>
     )
