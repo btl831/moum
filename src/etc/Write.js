@@ -57,14 +57,15 @@ export default function WritePage(){
     }
     return(
     <>
-        <div className="full">
-            <div class="container mt-3">
-                <input type="text" class="form-control mt-2" id="title" placeholder="title" onChange={onChange}/>
-                <textarea class="form-control mt-2" id="content"onChange={onChange}placeholder="content"></textarea>
+        <div>
+            <div class="container mb-3">
+                <br/>
+                <input type="text" class="form-control" id="title" placeholder="title" onChange={onChange}/>
+                <textarea class="form-control mt-2" id="content"onChange={onChange}placeholder="content" rows="4" cols="50"></textarea>
                 <input class="form-control mt-2" type="file" id="image"onChange={onChange}/>
             </div>
             
-            <button class="btn btn-danger mt-3" id="send"onClick={uploadimg}>올리기</button>
+            <button class="btn btn-danger" id="send"onClick={uploadimg}>올리기</button>
             <Button onClick={() => { history.goBack() }}>돌아가기</Button>
         </div>
     </>

@@ -14,6 +14,9 @@ import ChartPage from './music/Chart';
 import ListPage from './community/ListPage.js';
 import Detail from './community/Detail';
 import Chatroom from './community/Chatroom.js'
+import Wordle from './game/wordle/Wordle.js'
+import Wordle_Ranking from './game/wordle/Wordle_Ranking.js'
+
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -42,8 +45,10 @@ function App() {
           crossorigin="anonymous"
         />
       </head>
-      <body className='body'>
-        <Header />
+      <body>
+        <div className='header'>
+          <Header />
+        </div>
         <div className="body-wrapper">
           <div className='body-content'>
             <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
@@ -53,10 +58,13 @@ function App() {
             <Route path="/developer" component={Developer}/>
             <Route path="/list" component={ListPage}/>
             <Route path="/detail/:id" component = {Detail}/>
-            <Route path="/chatroom" component={Chatroom}/>
+            <Route path="/chatroom" component={Chatroom}  />
+            <Route exact path="/game/wordle" component = {Wordle}/>
+            <Route exact path="/game/wordle/ranking" component = {Wordle_Ranking}/>
+
           </div>
-          <Footer/>
         </div>
+        <Footer/>
       </body>
     </div>
    

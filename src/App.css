@@ -1,48 +1,27 @@
 .App {
-  text-align: center;
+    text-align: center;
+    min-height: 100%;
 }
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+height: 40vmin;
+pointer-events: none;
 }
 .spinner{
-  position: "fixed";
-  top: 50%;
-  left: 50%;
+position: "fixed";
+top: 50%;
+left: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+.App-logo {
     animation: App-logo-spin infinite 20s linear;
-  }
 }
-
-body{
-  width: 100%;
-  height :100%;
-  background : linear-gradient(to bottom, #ced1f8 30%, #ebf2ff, #ebf4ff);
 }
 
 .body-wrapper {
-  min-height: 100%;
-  position: relative;
+height: auto;
+min-height: 100vh;
+padding-bottom:70px;
+background : linear-gradient(to bottom, #ced1f8 30%, #ebf2ff, #ebf4ff);
 }
 
-.body-content {
-  margin-top: 100px;
-  padding-bottom: 70px; /* footer의 높이 */
-}
-
-.footer{
-  background-color: grey;
-  position:relative;
-  bottom:0;
-  width:100%;
-  height: 70px; 
-  padding: 10px;
-  text-align: center;
-}
-.full {
-  width: 100%;
-  height :82vh;
-}
