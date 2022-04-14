@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { db } from '../firebase/fBase';
+import { db } from '../firebase/fBase.js';
 import './Detail.css';
 
 export default function Detail() {

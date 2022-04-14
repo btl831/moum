@@ -51,6 +51,7 @@
     box-shadow: 1px 1px 5px rgb(126, 126, 126), 0px 1px 5px rgb(104, 104, 104);
     z-index: 0;
 }
+
 #wrapper {
     position: relative;
     left: 12px;
