@@ -61,7 +61,6 @@ function Chart(props) {
                 </tr>
             </thead>
             <tbody>
-
                 {
                     props.chart_info.map((a, i) => {
                         return (
@@ -78,7 +77,6 @@ function Chart(props) {
                         )
                     })
                 }
-
             </tbody>
         </Table>
     )
