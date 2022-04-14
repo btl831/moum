@@ -46,17 +46,17 @@ export default function Wordle_Ranking(){
                                     <>
                                     <tr>
                                     <td>{i}</td>
-                                    <td>{a.displayName}</td>
-                                    <td>{a.score}</td>
-                                    <td>{a.date}</td>
+                                    <td>{a.i.displayName}</td>
+                                    <td>{a.i.score}</td>
+                                    <td>{a.i.date}</td>
                                     </tr>
                                     </>
                                 )
                                 
                                         
                             })
-                        
                         }
+                        %
                     </tbody>
                     </Table>
                 </div>
