@@ -80,9 +80,9 @@ export default function Chatroom() {
                                 chatlst.map((a,i)=>{
                                     return(
                                     <>
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" onClick={(event)=>{read_msg();setChatId(a.id)}}>
                                     <h6>{a.data().title}</h6>
-                                    <h6 class="text-small" onClick={(event)=>{read_msg();setChatId(a.id)}}>{a.id}</h6>
+                                    <h6 class="text-small" >{a.id}</h6>
                                     </li>
                                     </>
                                     )
