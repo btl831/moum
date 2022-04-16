@@ -1,32 +1,33 @@
 import React, { Component, useEffect, useState } from 'react';
 import "./Chatroom.css";
 import { db } from '../firebase/fBase';
+import $ from 'jquery';
 
 export default function Chatroom() {
     var myuid = JSON.parse(localStorage.getItem('user')).uid;
-    var [chat,setchat] = useState([]);
+    var [chatlst,setchatlst] = useState([]);
     let [inputValue,setInputValue] = useState();
     let [chatid,setChatId]= useState("");
+
     useEffect(() => {
         db.collection('chatroom').where('who', 'array-contains', myuid).get().then((result) => {
             var array = [];
             result.forEach((doc) => {
-                array.push(doc.data());
-                let tagArea = document.getElementsByClassName('chat-list')[0];
-                let new_Tag = document.createElement('li');
-                new_Tag.setAttribute('class','list-group-item');
-                new_Tag.setAttribute('id','msg');
-                new_Tag.innerHTML = '<h6 className = "chat-lst">'+doc.data().title+'</h6> <h6 class="text-small" id ="doc_id">'+doc.id+'</h6>';
-                tagArea.appendChild(new_Tag);
-                let element = document.getElementById('msg');  
-                element.addEventListener('click', read_msg);
-                
+                array.push(doc);
+                // let tagArea = document.getElementsByClassName('chat-list')[0];
+                // let new_Tag = document.createElement('li');
+                // new_Tag.setAttribute('class','list-group-item');
+                // new_Tag.setAttribute('id','msg');
+                // new_Tag.innerHTML = '<h6 className = "chat-lst">'+doc.data().title+'</h6> <h6 class="text-small" id ="doc_id">'+doc.id+'</h6>';
+                // tagArea.appendChild(new_Tag);
+                // let element = document.getElementById('msg');  
+                // element.addEventListener('click', read_msg);
             });
+            setchatlst(array);
+            console.log(array);
             
         })
-    }, []);
-
-
+    }, [chatlst.value]);
 
     // document.getElementsByClassName('list-group-item').onClick
     //     chatid = this.document.getElementsByClassName('text-small');
@@ -34,7 +35,7 @@ export default function Chatroom() {
     // })
     // 채팅 읽어오는 법
     const read_msg = async (event) => {
-        setChatId(event.target.value)
+        setChatId($(this).children('.text-small').text());
         console.log(chatid);
         // event bubbling 방지하는 함수
         event.preventDefault();
@@ -68,7 +69,7 @@ export default function Chatroom() {
         })
     }
 
-    // 채팅 보는 법
+    // 채팅 보내는 법
     const send_msg = async (event) => {
         // 서브컬렉션으로 채팅방 채팅 기록하기
         var 데이터 = {
@@ -92,7 +93,21 @@ export default function Chatroom() {
             <div className="container p-4 detail">
                 <div className="row">
                     <div className="col-3 p-0">
+                        {/* 채팅 목록 */}
                         <ul className="list-group chat-list">
+                            {
+                                chatlst.map((a,i)=>{
+                                    return(
+                                    <>
+                                    <li class="list-group-item">
+                                    <h6>{a.data().title}</h6>
+                                    <h6 class="text-small">{a.id}</h6>
+                                    </li>
+                                    </>
+                                    )
+                                })
+                            }
+
 
                         </ul>
                     </div>
