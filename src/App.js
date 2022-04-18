@@ -16,7 +16,6 @@ import Detail from './community/Detail';
 import Chatroom from './community/Chatroom.js'
 import Wordle from './game/wordle/Wordle.js'
 import Wordle_Ranking from './game/wordle/Wordle_Ranking.js'
-import NLogin_call from './firebase/NLogin_call'
 
 
 function App() {
@@ -62,7 +61,6 @@ function App() {
             <Route path="/chatroom" component={Chatroom}  />
             <Route exact path="/game/wordle" component = {Wordle}/>
             <Route exact path="/game/wordle/ranking" component = {Wordle_Ranking}/>
-            <Route exact path="/login/NLogin_call" component = {NLogin_call}/>
 
 
           </div>

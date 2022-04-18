@@ -13,7 +13,7 @@ function NaverLogin() {
     function Naver() {
         const naverLogin = new window.naver.LoginWithNaverId({
             clientId: "jsIZ08qqS6zaoW5Gvz59",
-            callbackUrl: "http://127.0.0.1:3000/.",
+            callbackUrl: "http://127.0.0.1:4000/",
             isPopup: false,
             loginButton: { color: "green", type: 1, height: 25 },
             callbackHandle: true,
@@ -45,17 +45,6 @@ function NaverLogin() {
                 console.log("Naver 비로그인 상태")
             }
         })
-    }
-    function GetProfile(){
-        window.location.href.includes('access_token') && GetUser();
-        function GetUser(){
-            const location = window.location.href.split('=')[1];
-            const loca = location.split('&')[0];
-            const header = {
-                Authorization: loca,
-            };
-            fetch('http://10.58.2.227:8000/user/naver_auth',)
-        }
     }
 
 
