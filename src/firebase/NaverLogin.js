@@ -13,8 +13,8 @@ function NaverLogin() {
     function Naver() {
         const naverLogin = new window.naver.LoginWithNaverId({
             clientId: "jsIZ08qqS6zaoW5Gvz59",
-            callbackUrl: "http://localhost:3000/",
-            isPopup: true,
+            callbackUrl: "http://127.0.0.1:3000/.",
+            isPopup: false,
             loginButton: { color: "green", type: 1, height: 25 },
             callbackHandle: true,
         });
