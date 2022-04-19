@@ -9,8 +9,8 @@ function NaverLogin() {
     const Naver =()=> {
         const naverLogin = new window.naver.LoginWithNaverId({
             clientId: "jsIZ08qqS6zaoW5Gvz59",
-            callbackUrl: "http://localhost:3000/",
-            isPopup: true,
+            callbackUrl: "http://127.0.0.1:4000/",
+            isPopup: false,
             loginButton: { color: "green", type: 1, height: 25 },
             callbackHandle: true,
         });
@@ -41,24 +41,6 @@ function NaverLogin() {
                 console.log("Naver 비로그인 상태")
             }
         })
-    }
-    useEffect(() => {
-        Naver(); // useEffect로 안하고 onclick하면 로그인배너아이콘 안뜸
-      }, []);
-
-
-
-    function GetProfile(){
-        window.location.href.includes('access_token') && GetUser();
-        function GetUser(){
-            const location = window.location.href.split('=')[1];
-            const loca = location.split('&')[0];
-            const header = {
-                Authorization: `Bearer ${loca}`,
-            };
-            const userData = axios.get('https://openapi.naver.com/v1/nid/me',header)
-            console.log(userData);
-        }
     }
 
 

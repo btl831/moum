@@ -62,6 +62,7 @@ function App() {
             <Route exact path="/game/wordle" component = {Wordle}/>
             <Route exact path="/game/wordle/ranking" component = {Wordle_Ranking}/>
 
+
           </div>
         </div>
         <Footer/>

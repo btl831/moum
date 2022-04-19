@@ -1,19 +1,40 @@
 import { Button, Container} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import { Link,useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import styles from '../App.module.css'
 import Slider from '../music/Slider';
 import Summary from '../community/Summary.js';
 import Recommend from '../etc/Recommend';
 import ChartPage from '../music/Chart';
+
 import {  useState } from 'react';
 import { faMoneyCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
+import axios from 'axios';
+    
 function Body(props) {
     let [clickvalue,setClickvalue] = useState("");
+    const location = useLocation();  
 
-    
+    const getNaverToken = () => {
+      if (!location.hash) return;
+      const token = location.hash.split('=')[1].split('&')[0];
+      console.log(token);
+      axios.post(`http://localhost:4000/user/naver-login`, {
+        token
+    }, {
+        withCredentials: true
+    })
+    .then((res)=> {
+        window.location.replace('/')
+      //서버측에서 로직이 완료되면 홈으로 보내준다
+    })
+    };
+  
+    useEffect(() => {
+      getNaverToken();
+    }, []);
+
     return(
         <>
         <Container>
