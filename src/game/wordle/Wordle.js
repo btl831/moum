@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Wordle.css'
 import {Button} from 'react-bootstrap';
 import {db} from '../../firebase/fBase'
+import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Wordle() {
     var answer = 'abcde'; //5글자 단어 준비하는법 생각, 쓰는 단어만 써야하는걸 생각
@@ -93,6 +95,7 @@ export default function Wordle() {
     return (
         <>
             <div>
+            <FontAwesomeIcon icon={faRankingStar} size={"2x"} className="fa"/>
                 <Button variant="light outline-secondary" onClick={()=>window.location.href='/game/wordle/ranking'}>랭킹보기</Button>
             </div>
             <div className='main_wordle'>

@@ -1,8 +1,38 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { authService,firebaseInstance,db } from './fBase';
 import { Button, Container,Form } from 'react-bootstrap'
+import NaverLogin from './NaverLogin';
 
+// const naverLogin =() =>{
+//     const login = new window.naver.LoginWithNaverId({
+//         clientId: "jsIZ08qqS6zaoW5Gvz59",
+//         callbackUrl,
+//         isPopup: true,
+//         loginButton: {color:"green",type : 1, height : 25},
+//         callbackHandle: true,
+//     });
+//     login.init()
+// }
+// useEffect(()=>{
+//     naverLogin();
+//     setError(false);
+//     SpeechRecognitionAlternative(false);
+// })
+
+// const NaverLogin = () => {
+//     const url = windwo.opener.document.location.href;
+//     const {hostname, protocal} = window.location;
+
+//     const callback = `${protocal}//${hostname}/naver-login`;
+//     const naverLogin = new window.naver.LoginWithNaverId({
+//         clientId: "jsIZ08qqS6zaoW5Gvz59",
+//         callbackUrl,
+//         isPopup: false,
+//         callbackHandle:false,
+//     })
+//     naverLogin.init();
+// }
 // 로그인 컴포넌트 작성
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -127,6 +157,7 @@ const Login = () => {
             {/* 버튼을 클릭하면 변경과 로그인 가입을 바꿔줌 */}
             <Button variant="secondary" onClick={toggleAccount}> {newAccount ? "Login" : "Create Account"} </Button>
             <Button  variant="primary" name="google" onClick={onGoogleClick}>구글 계정으로 로그인</Button>
+            <NaverLogin></NaverLogin>
         </Container>
         </>
     )

@@ -33,7 +33,7 @@ export default function ChartPage(props) {
             <>
                 <br />
                 <div className="row">
-                    <div className="col-sm-5">
+                    <div className="col-md-5">
                         {/* 아직해결못함 */}
                         <CSSTransition in={clicker} classNames="click" timeout={500}>
                             <PlayBox nowSong={nowSong} setClicker={setClicker} />
