@@ -27,11 +27,15 @@ export default function Header() {
                 <Nav.Link href="/write">Write</Nav.Link>
                 {
                     userObj != null
-                    ? (<Nav.Link href="/chatroom">채팅방</Nav.Link>)
+                    ? ( <>
+                    <Nav.Link href="/chatroom">채팅방</Nav.Link>
+                    <Nav.Link href = "/game/wordle/">Wordle</Nav.Link>
+                    </>
+                    )
                     : null
 
                 }
-                <Nav.Link href = "/game/wordle/">Wordle</Nav.Link>
+                
                 
                 
                 </Nav>

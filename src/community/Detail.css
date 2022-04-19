@@ -4,3 +4,6 @@
     background-size: cover;
     background-position: center;
 } 
+.click_motion:hover{
+    cursor: pointer;
+}

@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom';
 
 import styles from '../App.module.css'
 import Slider from '../music/Slider';
-import Community from '../community/Community.js';
+import Summary from '../community/Summary.js';
 import Recommend from '../etc/Recommend';
 import ChartPage from '../music/Chart';
+import {  useState } from 'react';
+import { faMoneyCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Body(props) {
+    let [clickvalue,setClickvalue] = useState("");
+
+    
     return(
         <>
         <Container>
@@ -80,24 +86,29 @@ function Body(props) {
                 <div className="row" id={styles.wrapper}>
                 <div className="row">
                     <div className="col-sm-4 col-md-3" />
-                    <div className="col-sm-4 col-md-6" >
+                    <div className="col-sm-5 col-md-6 " >
+                        <FontAwesomeIcon icon={faMoneyCheck} size={"2x"} className="fa"/>
                         <h3>요청 게시판</h3>
                     </div>
-                    <div className="col-sm-3 col-md-2">
-                        <Button onClick={()=>window.location.href='/write'}>글쓰기</Button>
-                        &nbsp;
-                        <Button onClick={()=>window.location.href='/list'}>더보기</Button>
+                    <div className="col-sm-3 col-md-2 mt-3">
+                        <div className="row">
+                        <Button className ="col-sm-12 col-md-5 text-center "onClick={()=>window.location.href='/write'}>글쓰기</Button>
+                        <div className='col-md-2'>/</div>
+                        <Button className ="col-sm-12 col-md-5 text-center" onClick={()=>window.location.href='/list'}>더보기</Button>
+                        </div>
                     </div>
-                    <div className="col-sm-1 col-md-1" />
+                    <div className="col-sm-1 col-md-1"> </div>
                 </div>
                 <div className="row" >
                     <div className="col-md-1" />
-                    <div className="col-md-3 mt-3">
-                    <Community />
+                    <div className="col-md-3 mt-4">
+                    <Summary setClickvalue={setClickvalue}/>
                     </div>
+                    
                     <div className="col-md-7 mt-3" id={styles.subCommunity}>
-                    <a>여기에는 상세페이지 내용이 적힐 겁니다.</a>
+                    <p> {clickvalue} </p>
                     </div>
+
                     <div className="col-md-1" />
                 </div>
                 <div className="row" style={{ height:"100px"}} />

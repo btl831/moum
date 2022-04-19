@@ -1,16 +1,12 @@
 
 import React, { Component, useEffect } from 'react';
 import { db } from './fBase';
+import {axios} from 'axios'
 
 function NaverLogin() {
 
-    useEffect(CDM, []);
-    function CDM() {
-        Naver();
-        // GetProfile();
-    }
-
-    function Naver() {
+    
+    const Naver =()=> {
         const naverLogin = new window.naver.LoginWithNaverId({
             clientId: "jsIZ08qqS6zaoW5Gvz59",
             callbackUrl: "http://localhost:3000/",
@@ -38,7 +34,7 @@ function NaverLogin() {
 
                 // localStorage.setItem('user',JSON.stringify(userprofile));
                 // db.collection('user').doc(uid).set(userprofile);
-                // GetProfile()
+                GetProfile()
                 console.log("success");
             }
             else {
@@ -46,15 +42,22 @@ function NaverLogin() {
             }
         })
     }
+    useEffect(() => {
+        Naver(); // useEffect로 안하고 onclick하면 로그인배너아이콘 안뜸
+      }, []);
+
+
+
     function GetProfile(){
         window.location.href.includes('access_token') && GetUser();
         function GetUser(){
             const location = window.location.href.split('=')[1];
             const loca = location.split('&')[0];
             const header = {
-                Authorization: loca,
+                Authorization: `Bearer ${loca}`,
             };
-            fetch('http://10.58.2.227:8000/user/naver_auth',)
+            const userData = axios.get('https://openapi.naver.com/v1/nid/me',header)
+            console.log(userData);
         }
     }
 
