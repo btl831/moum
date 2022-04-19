@@ -34,7 +34,7 @@ function NaverLogin() {
 
                 // localStorage.setItem('user',JSON.stringify(userprofile));
                 // db.collection('user').doc(uid).set(userprofile);
-                GetProfile()
+                // GetProfile()
                 console.log("success");
             }
             else {
