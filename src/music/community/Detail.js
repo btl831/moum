@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { db } from '../firebase/fBase.js';
+import { db } from 'firebase/fBase.js';
 import './Detail.css';
 
 export default function Detail() {
@@ -44,7 +44,7 @@ export default function Detail() {
     }
     return(
         <>
-        <div class="full container">
+        <div class="container">
             <p>{`${params.id}번 상세페이지입니다. `}</p>
             <div class="detail-pic my-4">
                  <img className="phoneImage" alt="iPhone_01" src={item.image} width = "30%"/>

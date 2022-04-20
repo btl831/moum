@@ -1,5 +1,5 @@
-import AlertSong from '../music/AlertSong'
 import { Figure } from 'react-bootstrap';
+import AlertSong from '../features/AlertSong'
 
 export default function Recommend() {
     return (

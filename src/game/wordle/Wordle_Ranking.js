@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
-import './Wordle_Ranking.css'
-import {db} from '../../firebase/fBase'
 import { Table } from 'react-bootstrap';
+import './Wordle_Ranking.css'
+import { db } from '../../firebase/fBase'
 
 export default function Wordle_Ranking(){
     let [item,setItems] = useState([]);
@@ -11,7 +11,6 @@ export default function Wordle_Ranking(){
             var array =[];
             result.forEach((doc)=>{
                 array.push(doc.data());
-                
             });
            setItems(array);
            console.log(item);
@@ -48,7 +47,7 @@ export default function Wordle_Ranking(){
                                             <td>{a.score}</td>
                                             <td>
                                                 {
-                                                    Intl.DateTimeFormat('en-US', {
+                                                    Intl.DateTimeFormat('ko-KR', {
                                                         year: 'numeric',
                                                         month: '2-digit',
                                                         day: '2-digit',

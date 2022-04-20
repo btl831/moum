@@ -3,20 +3,21 @@ import { Spinner } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 
-import './App.css';
-import Header from './main/Header'
-import Body from './main/Body'
-import Footer from './main/Footer'
-import WritePage from './etc/Write';
-import Developer from './etc/Developer';
-import Login from './firebase/Login';
-import ChartPage from './music/Chart';
-import ListPage from './community/ListPage.js';
-import Detail from './community/Detail';
-import Chatroom from './community/Chatroom.js'
+import styles from './App.module.css';
+import Header from './fixedComponent/Header'
+import Footer from './fixedComponent/Footer'
+import Developer from './fixedComponent/Developer';
+
+import Body from './music/Body'
+import WritePage from './music/etc/Write';
+import ChartPage from './music/features/Chart';
+import ListPage from './music/community/ListPage';
+import Detail from './music/community/Detail';
+import Chatroom from './music/community/Chatroom.js'
+
 import Wordle from './game/wordle/Wordle.js'
 import Wordle_Ranking from './game/wordle/Wordle_Ranking.js'
-
+import Login from './firebase/Login';
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -32,10 +33,10 @@ function App() {
   }, []);
 
   // 로딩 UI
-  if (loading) return (<>로딩중 <Spinner animation="border" variant="primary" className="spinner" /></>);
+  if (loading) return (<>로딩중 <Spinner animation="border" variant="primary" className={styles.Spinner} /></>);
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
@@ -49,7 +50,7 @@ function App() {
         <div className='header'>
           <Header />
         </div>
-        <div className="body-wrapper">
+        <div className={styles.wrapper}>
           <div className='body-content'>
             <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
             <Route path="/chart" render={() => <ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
@@ -62,13 +63,11 @@ function App() {
             <Route exact path="/game/wordle" component = {Wordle}/>
             <Route exact path="/game/wordle/ranking" component = {Wordle_Ranking}/>
 
-
           </div>
         </div>
         <Footer/>
       </body>
     </div>
-   
   );
 }
 

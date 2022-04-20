@@ -1,6 +1,6 @@
 import { ListGroup } from "react-bootstrap"
 import { useEffect, useState } from "react";
-import { db } from "../firebase/fBase";
+import { db } from "../../firebase/fBase";
 import "./Detail.css";
 export default function Summary(props) {
   let[item,setItems] = useState();

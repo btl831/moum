@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './Wordle.css'
 import {Button} from 'react-bootstrap';
 import {db} from '../../firebase/fBase'
+import './Wordle.css'
+
 import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -29,7 +30,6 @@ export default function Wordle() {
 
     function matchWord() {
         {
-
             var input = document.querySelectorAll('#input');
             // 문자열 비교
             for (let i = 5 * count; i < 5 * (count + 1); i++) {
@@ -61,7 +61,6 @@ export default function Wordle() {
 
                     already();
                 }
-
             }
             // 맞았을 경우 그다음 기회를 주지 않고 축하해준다.
             else {
@@ -69,7 +68,6 @@ export default function Wordle() {
                 already();
                 updateGrade();
             }
-
         }
     }
     // 버튼 지우기
@@ -106,7 +104,6 @@ export default function Wordle() {
                     ? <Button onClick={matchWord} className="button_position" variant ="info">제출</Button>
                     : null
             }
-
         </>
     )
 }

@@ -1,6 +1,6 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
-import styles from '../App.module.css'
+import './Fixed.css'
 
 export default function Header() {
     var userObj = JSON.parse(localStorage.getItem('user'));
@@ -9,9 +9,8 @@ export default function Header() {
     { console.log('값이 바뀜') }, 
     [userObj]);
 
-
     return(
-        <div className={styles.sticky}>
+        <div className="sticky">
         <Container>
             <Navbar bg="dark" variant="dark" style={{ height:"62px" }}>
                 <Navbar.Brand href="/" >
@@ -33,10 +32,7 @@ export default function Header() {
                     </>
                     )
                     : null
-
                 }
-                
-                
                 
                 </Nav>
                 {
@@ -44,7 +40,6 @@ export default function Header() {
                     ? (<div className= "text-white">{userObj.displayName}님 환영합니다!  <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
                     :<Button className='primary' href={"/login"}>로그인</Button>
                 }
-                
             </Navbar>
         </Container>
         </div>

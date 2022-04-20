@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import "./Chatroom.css";
-import { db } from '../firebase/fBase';
+import { db } from 'firebase/fBase';
 
 export default function Chatroom() {
     var myuid = JSON.parse(localStorage.getItem('user')).uid;
@@ -14,15 +14,12 @@ export default function Chatroom() {
             var array = [];
             result.forEach((doc) => {
                 array.push(doc);
-
             });
             setchatlst(array);
             console.log(array);
-
         })
     }, [chatlst.value]);
 
-   
 
     // document.getElementsByClassName('list-group-item').onClick
     //     chatid = this.document.getElementsByClassName('text-small');
@@ -48,7 +45,6 @@ export default function Chatroom() {
             })
             setMessage(array);
             console.log(message);
-
         })
     }
      useEffect(()=>{
@@ -88,8 +84,6 @@ export default function Chatroom() {
                                     )
                                 })
                             }
-
-
                         </ul>
                     </div>
                     <div className="col-9 p-0">
@@ -108,10 +102,8 @@ export default function Chatroom() {
                                                 <li><span class="chat-box">{a.content}</span></li>
                                             )
                                         }
-
                                     })
                                 }
-                                
                             </ul>
                             <div className="input-group">
                                 <input className="form-control" id="chat-input" onChange={(event) => setInputValue(event.target.value)} />

@@ -1,18 +1,18 @@
 import { Button, Container} from 'react-bootstrap';
-import { Link,useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import styles from '../App.module.css'
-import Slider from '../music/Slider';
-import Summary from '../community/Summary.js';
-import Recommend from '../etc/Recommend';
-import ChartPage from '../music/Chart';
-import {  useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import styles from './Body.module.css'
+import Recommend from './etc/Recommend';
+import Slider from './features/Slider';
+import ChartPage from './features/Chart';
+import Summary from 'music/community/Summary';
+
 import { faMoneyCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Body(props) {
     let [clickvalue,setClickvalue] = useState("");
-
     
 // =======
 // import axios from 'axios';
