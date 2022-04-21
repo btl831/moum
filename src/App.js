@@ -4,6 +4,8 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from './App.module.css';
+import MainPage from './mainPage/MainPage'
+
 import Header from './fixedComponent/Header'
 import Footer from './fixedComponent/Footer'
 import Developer from './fixedComponent/Developer';
@@ -52,7 +54,8 @@ function App() {
         </div>
         <div className={styles.wrapper}>
           <div className='body-content'>
-            <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
+            <Route exact path="/" component={MainPage}/>
+            <Route path="/music" render={() => <Body chart_info={chart_info} />}/>
             <Route path="/chart" render={() => <ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
             <Route path="/write" component={WritePage} />
             <Route path="/login" component={Login} />
@@ -62,7 +65,6 @@ function App() {
             <Route path="/chatroom" component={Chatroom}  />
             <Route exact path="/game/wordle" component = {Wordle}/>
             <Route exact path="/game/wordle/ranking" component = {Wordle_Ranking}/>
-
           </div>
         </div>
         <Footer/>
