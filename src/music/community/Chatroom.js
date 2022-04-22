@@ -4,10 +4,11 @@ import { db } from 'firebase/fBase';
 
 export default function Chatroom() {
     var myuid = JSON.parse(localStorage.getItem('user')).uid;
-    var [chatlst,setchatlst] = useState([]);
-    let [inputValue,setInputValue] = useState();
-    let [chatid,setChatId]= useState("");
-    let [message,setMessage] = useState([]);
+    console.log(myuid)
+    var [chatlst, setchatlst] = useState([]);
+    let [inputValue, setInputValue] = useState();
+    let [chatid, setChatId] = useState("");
+    let [message, setMessage] = useState([]);
 
     useEffect(() => {
         db.collection('chatroom').where('who', 'array-contains', myuid).get().then((result) => {
@@ -35,30 +36,30 @@ export default function Chatroom() {
         // 채팅방을 누르면 안에 message 항목들 가져오기
         // DB 실시간 변동사항 반영하기 (onSnapshot) + orderBy()정렬
         // onSnapshot 이미 읽었던 document 는 과금이 없다.
-        db.collection('chatroom').doc(chatid).collection('messages').orderBy('date').onSnapshot((result)=>{
+        db.collection('chatroom').doc(chatid).collection('messages').orderBy('date').onSnapshot((result) => {
             var array = [];
-            result.forEach((a)=>{
+            result.forEach((a) => {
                 // 두번 출력됨(event bubbling 때문에)
                 console.log(a.data());
-                
+
                 array.push(a.data());
             })
             setMessage(array);
             console.log(message);
         })
     }
-     useEffect(()=>{
+    useEffect(() => {
         console.log(read_msg);
-    },[read_msg]);
+    }, [read_msg]);
 
     // 채팅 보내는 법
     const send_msg = async (event) => {
         event.preventDefault();
         // 서브컬렉션으로 채팅방 채팅 기록하기
         var 데이터 = {
-            content : inputValue ,
-            date : new Date(),
-            uid : myuid
+            content: inputValue,
+            date: new Date(),
+            uid: myuid
         }
         // 서브 컬렉션에 넣는 방법
         db.collection('chatroom').doc(chatid).collection('messages').add(데이터);
@@ -73,14 +74,14 @@ export default function Chatroom() {
                         {/* 채팅 목록 */}
                         <ul className="list-group chat-list">
                             {
-                                chatlst.map((a,i)=>{
-                                    return(
-                                    <>
-                                    <li class="list-group-item" onClick={(event)=>{read_msg();setChatId(a.id)}}>
-                                    <h6>{a.data().title}</h6>
-                                    <h6 class="text-small" >{a.id}</h6>
-                                    </li>
-                                    </>
+                                chatlst.map((a, i) => {
+                                    return (
+                                        <>
+                                            <li className="list-group-item mt-3 ml-3" onClick={(event) => { read_msg(); setChatId(a.id) }}>
+                                                <h6>{a.data().title}</h6>
+                                                <h6 class="text-small" >{a.id}</h6>
+                                            </li>
+                                        </>
                                     )
                                 })
                             }
@@ -91,14 +92,14 @@ export default function Chatroom() {
                             {/* 채팅창 */}
                             <ul className="list-group chat-content">
                                 {
-                                    message.map((a,i)=>{
-                                        if(a.uid == myuid){
-                                            return(
+                                    message.map((a, i) => {
+                                        if (a.uid == myuid) {
+                                            return (
                                                 <li><span class="chat-box mine">{a.content}</span></li>
                                             )
                                         }
-                                        else{
-                                            return(
+                                        else {
+                                            return (
                                                 <li><span class="chat-box">{a.content}</span></li>
                                             )
                                         }
@@ -106,7 +107,7 @@ export default function Chatroom() {
                                 }
                             </ul>
                             <div className="input-group">
-                                <input className="form-control" id="chat-input" onChange={(event) => setInputValue(event.target.value)} />
+                                <input className="form-control" id="chat-input" onChange={(event) => (event.preventDefault(), setInputValue(event.target.value))} />
                                 <button className="btn btn-secondary" id="send" onClick={send_msg}>전송</button>
                             </div>
                         </div>
