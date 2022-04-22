@@ -1,7 +1,7 @@
-import React,{useState} from "react";
+import React,{ useState } from "react";
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import {db,storage} from '../firebase/fBase';
+import { db,storage } from 'firebase/fBase';
 
 export default function WritePage(){
     const [title, setTitle] = useState('');
@@ -46,13 +46,9 @@ export default function WritePage(){
                         window.location.href = '/'
                         }).catch((error)=>{
                         console.log(error)
-                    })  
-
+                    })
                 })
-                
             }
-
-
         )
     }
     return(

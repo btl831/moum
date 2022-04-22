@@ -88,8 +88,7 @@ function PlayBox(props) {
         props.setClicker(true);
     });
     return (
-        <Card style={{ width: '30rem', height: '45rem' }} className="j_card mt-5 pt-5 "  >
-
+        <Card style={{ width: '30rem', height: '45rem' }} className="j_card mt-5 pt-5">
             <Card.Body>
                 <ReactPlayer
                     url={props.nowSong.link}

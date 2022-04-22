@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {db} from '../firebase/fBase';
+import {db} from '../../firebase/fBase';
 import { ListGroup,Button } from 'react-bootstrap';
 import './ListPage.module.css';
 
@@ -18,7 +18,7 @@ export default function ListPage() {
 
     return(
         <>
-        <div className="full container mt-3">
+        <div className="container mt-3">
             <ListGroup as="ol" >
             {
                 text.map((a,i)=>
