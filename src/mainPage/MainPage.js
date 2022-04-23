@@ -8,7 +8,7 @@ export default function MainPage() {
         <br/><br/><br/>
         <div>
             <Button onClick={()=>window.location.href='/music'}>음악페이지로!</Button>&nbsp;&nbsp;&nbsp;
-            <Button onClick={()=>window.location.href='/game/wordle'}>게임페이지로!</Button>
+            <Button onClick={()=>window.location.href='/game'}>게임페이지로!</Button>
         </div>
         </>
     );

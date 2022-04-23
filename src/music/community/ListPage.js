@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {db} from '../../firebase/fBase';
+import {db} from 'firebase/fBase';
 import { ListGroup,Button } from 'react-bootstrap';
 import './ListPage.module.css';
 
@@ -29,7 +29,7 @@ export default function ListPage() {
                     >
                         <div className='row'>
                             <div className="ms-2 col-10">
-                                <a className="fw-bold" href={'/detail/' + i} style={{color:"black"}}>
+                                <a className="fw-bold" href={'detail/' + i} style={{color:"black"}}>
                                     {i}.{a.title}
                                 </a>
                                 <img src= {a.image} width ="10%"></img>

@@ -1,12 +1,12 @@
 import React,{ useState } from "react";
 import { Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { db,storage } from 'firebase/fBase';
 
 export default function WritePage(){
     const [title, setTitle] = useState('');
     const [context, setConent] = useState('');
-    let history = useHistory();
+    let navigate = useNavigate();
     // 바뀌는 것에 대한 메소드
     const onChange = (event) => {
         const {target: {id, value}} = event;
@@ -62,7 +62,7 @@ export default function WritePage(){
             </div>
             
             <button class="btn btn-danger" id="send"onClick={uploadimg}>올리기</button>
-            <Button onClick={() => { history.goBack() }}>돌아가기</Button>
+            <Button onClick={() => { navigate(-1) }}>돌아가기</Button>
         </div>
     </>
     )
