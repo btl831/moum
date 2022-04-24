@@ -9,8 +9,9 @@ export default function Header() {
     { console.log('값이 바뀜') }, 
     [userObj]);
 
+    if(window.location.pathname === "/") return null;
     return(
-        <div className={styles.sticky}>
+        <div className={styles.static}>
         <Container>
             <Navbar bg="dark" variant="dark" style={{ height:"62px" }}>
                 <Navbar.Brand href="/" >
@@ -22,13 +23,12 @@ export default function Header() {
                     />
                 </Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/chart">TOP 100</Nav.Link>
-                    <Nav.Link href="/write">Write</Nav.Link>
+                    <Nav.Link href="/music">Music</Nav.Link>
                     {
                         userObj != null
                         ? ( <>
-                        <Nav.Link href="/chatroom">채팅방</Nav.Link>
-                        <Nav.Link href = "/game/wordle/">Wordle</Nav.Link>
+                        <Nav.Link href="/game">Game</Nav.Link>
+                        <Nav.Link href="/music/chatroom">채팅방</Nav.Link>
                         </>
                         )
                         : null
@@ -36,7 +36,7 @@ export default function Header() {
                 </Nav>
                 {
                     userObj != null
-                    ? (<div className= "text-white">{userObj.displayName}님 환영합니다!  <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
+                    ? (<div className= "text-white">{userObj.displayName}님 환영합니다!   <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
                     :<Button className='primary' href={"/login"}>로그인</Button>
                 }
             </Navbar>
