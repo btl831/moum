@@ -10,3 +10,9 @@
 .send{
     float:right;
 }
+
+#box{
+    border: 1px solid grey;
+    background-color: ghostwhite;
+    background-attachment: fixed;
+}

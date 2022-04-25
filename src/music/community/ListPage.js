@@ -45,7 +45,7 @@ export default function ListPage() {
 
                                         </div>
                                         <div className='contextbox'>
-                                        <b></b>작성자: {a.displayName}
+                                        작성자:{a.displayName}
                                         <p> {a.context} </p>
                                         </div>
 
