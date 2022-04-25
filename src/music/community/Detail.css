@@ -7,3 +7,12 @@
 .click_motion:hover{
     cursor: pointer;
 }
+.send{
+    float:right;
+}
+
+#box{
+    border: 1px solid grey;
+    background-color: ghostwhite;
+    background-attachment: fixed;
+}
