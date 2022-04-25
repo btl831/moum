@@ -1,7 +1,7 @@
-import "./Fixed.css";
+import styles from "./Footer.module.css";
 export default function Footer() {
     return(
-        <footer className="bg-dark footer">
+        <footer className="bg-dark" id={styles.footer}>
             <div className="container">
                 <a className="m-0 text-center text-white">
                     Copyright &copy; Btl_831 2021<br/>

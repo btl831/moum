@@ -1,23 +1,27 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, NotFound} from 'react';
 import { Spinner } from 'react-bootstrap';
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
-import styles from './App.module.css';
+import styles from './App.module.css'
+import MainPage from './mainPage/MainPage'
+
+import Login from './firebase/Login'
 import Header from './fixedComponent/Header'
 import Footer from './fixedComponent/Footer'
-import Developer from './fixedComponent/Developer';
+import Developer from './fixedComponent/Developer'
 
-import Body from './music/Body'
+import MusicPage from './music/MusicPage'
 import WritePage from './music/etc/Write';
 import ChartPage from './music/features/Chart';
 import ListPage from './music/community/ListPage';
 import Detail from './music/community/Detail';
-import Chatroom from './music/community/Chatroom.js'
+import Chatroom from './music/community/Chatroom';
 
-import Wordle from './game/wordle/Wordle.js'
-import Wordle_Ranking from './game/wordle/Wordle_Ranking.js'
-import Login from './firebase/Login';
+import GamePage from './game/GamePage'
+import Wordle from './game/wordle/Wordle';
+import Wordle_Ranking from './game/wordle/Wordle_Ranking';
+
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -28,7 +32,7 @@ function App() {
     htmlTitle.innerHTML = "MOUM";
 
     axios.get("https://btl831.github.io/example.json")
-      .then((result) => { console.log(result.data); setChart_info(result.data); setLoading(false) })
+      .then((result) => { setChart_info(result.data); setLoading(false) })
       .catch();
   }, []);
 
@@ -47,23 +51,28 @@ function App() {
         />
       </head>
       <body>
-        <div className='header'>
-          <Header />
-        </div>
+        <Header />
         <div className={styles.wrapper}>
-          <div className='body-content'>
-            <Route exact path="/" render={() => <Body chart_info={chart_info} />}/>
-            <Route path="/chart" render={() => <ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
-            <Route path="/write" component={WritePage} />
-            <Route path="/login" component={Login} />
-            <Route path="/developer" component={Developer}/>
-            <Route path="/list" component={ListPage}/>
-            <Route path="/detail/:id" component = {Detail}/>
-            <Route path="/chatroom" component={Chatroom}  />
-            <Route exact path="/game/wordle" component = {Wordle}/>
-            <Route exact path="/game/wordle/ranking" component = {Wordle_Ranking}/>
+          <Routes>
+            <Route path="/" element={<MainPage />}/>
+            <Route path="/login/*" element={<Login />} />
+            <Route path="/developer/*" element={<Developer />}/>
 
-          </div>
+            <Route path="/music">
+              <Route path="" element={<MusicPage chart_info={chart_info} />} />
+              <Route path="chart" element={<ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
+              <Route path="write" element={<WritePage />} />
+              <Route path="list" element={<ListPage />}/>
+              <Route path="detail/:id" element={<Detail />}/>
+              <Route path="chatroom" element={<Chatroom />} />
+            </Route>
+            
+            <Route path="/game">
+              <Route path="" element={<GamePage />} />
+              <Route path="wordle" element={<Wordle />}/>
+              <Route path="wordle/ranking" element={<Wordle_Ranking />}/>
+            </Route>
+          </Routes>
         </div>
         <Footer/>
       </body>

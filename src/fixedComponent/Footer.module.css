@@ -1,13 +1,7 @@
-.footer{
+#footer{
     background-color: grey;
     position:relative;
     height: 70px; 
     padding: 10px;
     text-align: center;
-}
-.sticky {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: #212529;
 }
