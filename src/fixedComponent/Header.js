@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.css'
 
 export default function Header() {
     var userObj = JSON.parse(localStorage.getItem('user'));
+    var navigate = useNavigate();
     
     useEffect(()=>
     { console.log('값이 바뀜') }, 
@@ -36,7 +38,7 @@ export default function Header() {
                 </Nav>
                 {
                     userObj != null
-                    ? (<div className= "text-white">{userObj.displayName}님 환영합니다!   <Button onClick={() => { localStorage.removeItem('user'); window.location.href = "/";}}>로그아웃</Button> </div> )
+                    ? (<div className= "text-white">{userObj.displayName}님 환영합니다!   <Button onClick={() => { localStorage.removeItem('user'); navigate(0);}}>로그아웃</Button> </div> )
                     :<Button className='primary' href={"/login"}>로그인</Button>
                 }
             </Navbar>

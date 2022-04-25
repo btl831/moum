@@ -1,7 +1,8 @@
-// App.js
 import React, { useEffect, useState } from 'react';
-import { authService,firebaseInstance,db } from './fBase';
 import { Button, Container,Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
+
+import { authService,firebaseInstance,db } from './fBase';
 import NaverLogin from './NaverLogin';
 
 // const naverLogin =() =>{
@@ -35,6 +36,7 @@ import NaverLogin from './NaverLogin';
 // }
 // 로그인 컴포넌트 작성
 const Login = () => {
+    var navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [newAccount, setNewAccount] = useState(false);	// 로그인으로 먼저 들어올꺼니깐(초기 False)
@@ -49,19 +51,19 @@ const Login = () => {
         const data = await authService.signInWithPopup(provider);
         console.log(data);
         localStorage.setItem('user',JSON.stringify(data));
-        window.location.href = "/";
+        navigate(-1);
     }
 
     // 바뀌는 것에 대한 메소드
     const onChange = (event) => {
         const {target: {name, value}} = event;
-        if (name==='email') {
+        if (name === 'email') {
             setEmail(value)
         }
-        else if (name=== "password") {
+        else if (name === "password") {
             setPassword(value);
         }
-        else if (name == "displayName"){
+        else if (name === "displayName") {
             setdisplayName(value)
         }
     }
@@ -74,7 +76,6 @@ const Login = () => {
             if (newAccount) {
                 // create account
                 data = await authService.createUserWithEmailAndPassword(email, password).then(result =>{
-
                     // store 저장
                     var userprofile = {
                         displayName : displayName,
@@ -95,11 +96,10 @@ const Login = () => {
                 await authService.signInWithEmailAndPassword(email, password).then((result)=>{
                     console.log(result.user)
                     localStorage.setItem('user',JSON.stringify(result.user));
-                    window.location.href = "/";
+                    navigate(-1);
                 });
                 
             }
-            
             
         } catch(error) {
         console.log(error)
