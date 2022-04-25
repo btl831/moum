@@ -30,7 +30,7 @@ export default function ListPage() {
                             >
                                 <div className='row'>
                                     <div className="ms-2 col-10">
-                                        <a className="fw-bold" href={'/detail/' + a.id} style={{ color: "black" }}>
+                                        <a className="fw-bold" href={'detail/' + a.id} style={{ color: "black" }}>
                                             {i}.{a.title}
                                         </a>
                                         <img src={a.image} width="10%"></img>
