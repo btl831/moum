@@ -9,7 +9,7 @@ import Slider from './features/Slider';
 import ChartPage from './features/Chart';
 import Summary from 'music/community/Summary';
 
-import { faMoneyCheck } from "@fortawesome/free-solid-svg-icons";
+import { faMoneyCheck, faHeadphones } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function MusicPage(props) {
@@ -57,30 +57,16 @@ function MusicPage(props) {
                 <div className={styles.space} />
                 <div className="row" style={{height:"100px"}} />
                 <div className="row" id={styles.wrapper}>
+
                 <div className="col-md-5" id={styles.index}>
+                    <div className='pt-4 margin-left-auto'>
                     <hr />
                     <h5>가수별 Playlist</h5>
+                    <FontAwesomeIcon icon={faHeadphones} size={"2x"} className="fa"/>
                     <hr />
-                    <div className="row mt-5">
-                    <div className="col-sm-1 col-md-2" />
-                    <div className="col-sm-5 col-md-4" id={styles.box}>
+                    </div>
+                    <div className="pt-2">
                         <Recommend />
-                    </div>
-                    <div className="col-sm-5 col-md-4" id={styles.box}>
-                        <Recommend />
-                    </div>
-                    <div className="col-sm-1 col-md-2" />
-                    </div>
-                    
-                    <div className="row">
-                    <div className="col-sm-1 col-md-2" />
-                    <div className="col-sm-5 col-md-4" id={styles.box}>
-                        <Recommend />
-                    </div>
-                    <div className="col-sm-5 col-md-4" id={styles.box}>
-                        <Recommend />
-                    </div>
-                    <div className="col-sm-1 col-md-2" />
                     </div>
                 </div>
 
@@ -114,7 +100,7 @@ function MusicPage(props) {
                     <div className="col-sm-4 col-md-3" />
                     <div className="col-sm-5 col-md-6 " >
                         <FontAwesomeIcon icon={faMoneyCheck} size={"2x"} className="fa"/>
-                        <h3>요청 게시판</h3>
+                        <h3 className="reqlist" onClick={()=>window.location.href='/list'}>요청 게시판</h3>
                     </div>
                     <div className="col-sm-3 col-md-2 mt-3">
                         <div className="row">

@@ -1,0 +1,14 @@
+.container{
+    width: 300vh;
+}
+.inner{
+    width: 100vh;
+    float : left;
+}
+.inner img{
+    width: 100%;
+    transform: translate(-100vh);
+}
+.carousel{
+    overflow: hidden;
+}

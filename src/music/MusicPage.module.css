@@ -50,3 +50,6 @@
     box-shadow: 1px 1px 5px rgb(126, 126, 126), 0px 1px 5px rgb(104, 104, 104);
     z-index: 0;
 }
+h3 .reqlist::hover{
+    cursor: pointer;
+}
