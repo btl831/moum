@@ -70,7 +70,7 @@ export default function Detail() {
 
                 <div>
                     <h5>제목 : {item.title}</h5>
-                    <hr />
+                    <hr/>
                     <h5 class="title">내용 : {item.context}</h5>
                     <p class="date">올린날짜</p>
                     <p class="price">가격</p>

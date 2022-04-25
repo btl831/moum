@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {db} from 'firebase/fBase';
-import { ListGroup,Button } from 'react-bootstrap';
+import { db } from 'firebase/fBase';
+import { ListGroup, Button } from 'react-bootstrap';
 import './ListPage.module.css';
-
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ListPage() {
     const [text, setText] = useState([]);
-
+    const myuid = JSON.parse(localStorage.getItem('user')).uid;
     useEffect(() => {
         db.collection('Comment').get().then((result) => {
             var array = [];
@@ -20,27 +21,59 @@ export default function ListPage() {
     return (
         <>
             <div className="container pt-1">
-                <ListGroup as="ol" className='mt-3' >
+                <ListGroup className='mt-3' >
                     {
                         text.map((a, i) =>
                             <ListGroup.Item
                                 as="li"
-                                className="d-flex justify-content-between align-items-start mb-3"
+                                className="mb-3"
                                 key={i}
                             >
                                 <div className='row'>
-                                    <div className="ms-2 col-10">
-                                        <a className="fw-bold" href={'detail/' + a.id} style={{ color: "black" }}>
-                                            {i}.{a.title}
-                                        </a>
-                                        <img src={a.image} width="10%"></img>
-                                        <br />
-                                        {a.context}
+                                    <div className="col-md-10">
+                                        <div className='row'>
+                                            <div className='col-md-10'>
+                                                <p>글: {i + 1} <a className="fw-bold" href={'detail/' + a.id} style={{ color: "black" }}>
+                                                    {a.title}
+                                                </a></p>
+                                            </div>
+
+                                            <div className='col-md-2'>
+                                                <FontAwesomeIcon icon={faMessage} size={"md"} className="fa" />
+                                                ??
+                                            </div>
+
+                                        </div>
+                                        <div className='contextbox'>
+                                        <p> {a.context} </p>
+                                        </div>
+
+
+
                                     </div>
 
-                                    <div className="ms-2 col-2">
-                                        <Button>수정하기</Button>
+                                    <div className='col-md-2'>
+                                        {myuid == a.uid
+                                            ? <div className='pb-3'>
+                                                <Button  >수정하기</Button>
+                                            </div>
+                                            :
+                                            null
+
+                                        }
+
+                                        {
+                                            a.image == null
+                                                ? null
+                                                : (
+
+                                                    <img src={a.image} width="50%" ></img>
+
+                                                )
+                                        }
                                     </div>
+
+
                                 </div>
                             </ListGroup.Item>
                         )
