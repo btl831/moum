@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import { Table } from 'react-bootstrap';
-import './Wordle_Ranking.css'
-import { db } from '../../firebase/fBase'
+import './WordleRanking.css'
+import { db } from 'firebase/fBase'
 
-export default function Wordle_Ranking(){
+export default function WordleRanking(){
     let [item,setItems] = useState([]);
     
     useEffect(()=>{
@@ -13,9 +13,8 @@ export default function Wordle_Ranking(){
                 array.push(doc.data());
             });
            setItems(array);
-           console.log(item);
         })
-    },[item.values])
+    },[item])
 
     return(
         <>

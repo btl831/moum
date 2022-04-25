@@ -20,7 +20,7 @@ import Chatroom from './music/community/Chatroom';
 
 import GamePage from './game/GamePage'
 import Wordle from './game/wordle/Wordle';
-import Wordle_Ranking from './game/wordle/Wordle_Ranking';
+import WordleRanking from './game/wordle/WordleRanking';
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <head>
+      <div>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           rel="stylesheet"
@@ -48,8 +48,8 @@ function App() {
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous"
         />
-      </head>
-      <body>
+      </div>
+      <div>
         <Header />
         <div className={styles.wrapper}>
           <Routes>
@@ -70,13 +70,13 @@ function App() {
               <Route path="game">
                 <Route path="" element={<GamePage />} />
                 <Route path="wordle" element={<Wordle />}/>
-                <Route path="wordle/ranking" element={<Wordle_Ranking />}/>
+                <Route path="wordle/ranking" element={<WordleRanking />}/>
               </Route>
             </Route>
           </Routes>
         </div>
         <Footer/>
-      </body>
+      </div>
     </div>
   );
 }

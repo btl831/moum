@@ -64,7 +64,7 @@ function Chart(props) {
                 {
                     props.chart_info.map((a, i) => {
                         return (
-                            <tr>
+                            <tr key={i}>
                                 <td>{a.id}</td>
                                 <td><Figure.Image src={a.image} width={50} height={50} /></td>
                                 <td>{a.title}</td>

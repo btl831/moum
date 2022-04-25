@@ -25,7 +25,7 @@ export default function Recommend() {
         <>
             <div className='carousel'>
                 <div className='container pt-5'>
-                    <iframe className='pt-1  pl-3' width="400vh" height="270vh" src="https://www.youtube.com/embed/tHmc2mAXZSA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe className='pt-1  pl-3' width="400vh" height="270vh" src="https://www.youtube.com/embed/tHmc2mAXZSA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
             </div>
             <div className='container row'>
@@ -35,8 +35,9 @@ export default function Recommend() {
                             <>
                                 <div className='col-1'></div>
                                 <Button className='btn1 col-3' onClick={() => { setOpen(false); setOpen(!open); setClick(a); }}
-                                    aria-controls="example-collapse-text"
-                                    aria-expanded={open}>{a.singer}</Button>
+                                    aria-controls="example-collapse-text" aria-expanded={open}>
+                                        {a.singer}
+                                </Button>
                             </>
                         )
                     })
@@ -48,7 +49,7 @@ export default function Recommend() {
                 <div className='col-1'></div>
                 <Button className='btn3 col-3'>요네즈 켄시</Button> */}
                 <div>
-                    {open == true
+                    {open === true
                         ? <Collapse in={open}>
                             <div id="example-collapse-text">
                                 {click.context}
@@ -56,10 +57,8 @@ export default function Recommend() {
                         </Collapse>
                         : null
                     }
-
                 </div>
             </div>
         </>
-
     );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.css'
@@ -6,10 +6,6 @@ import styles from './Header.module.css'
 export default function Header() {
     var userObj = JSON.parse(localStorage.getItem('user'));
     var navigate = useNavigate();
-    
-    useEffect(()=>
-    { console.log('값이 바뀜') }, 
-    [userObj]);
 
     if(window.location.pathname === "/") return null;
     return(

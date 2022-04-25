@@ -1,6 +1,7 @@
 import { ListGroup } from "react-bootstrap"
 import { useEffect, useState } from "react";
-import { db } from "../../firebase/fBase";
+
+import { db } from "firebase/fBase";
 import "./Detail.css";
 export default function Summary(props) {
   let[item,setItems] = useState();
@@ -9,29 +10,24 @@ export default function Summary(props) {
           var array =[];
           result.forEach((doc)=>{
               array.push(doc.data());
-              
           });
         setItems(array);
-        console.log(item);
       })
-  },[]);
+    },[]);
 
-
-  
-    return (
-      <>
-      <ListGroup variant="flush" as="ol">
-        {
-          item && item.map((a,i)=>{
-
-            return(
-              <ListGroup.Item className="click_motion"variant="secondary" onClick={()=>{props.setClickvalue(a.context); }}>{a.title}</ListGroup.Item>
-            )
-              
-          })
-        }
-      </ListGroup>
-      </>
-    )
-  }
-
+  return (
+    <>
+    <ListGroup variant="flush" as="ol">
+      {
+        item && item.map((a,i)=>{
+          return(
+            <ListGroup.Item className="click_motion"variant="secondary" onClick={()=>{props.setClickvalue(a.context); }} key={i}>
+              {a.title}
+            </ListGroup.Item>
+          )
+        })
+      }
+    </ListGroup>
+    </>
+  )
+}

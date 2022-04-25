@@ -6,29 +6,22 @@ import './Detail.css';
 export default function Detail() {
     const params = useParams();
     let [item, setItems] = useState([]);
-    var chatuid = "";
+    let [chatuid, setUid] = useState("");
     const myuid = JSON.parse(localStorage.getItem('user')).uid;
 
     useEffect(() => {
         db.collection('Comment').doc(params.id).get().then((result) => {
             setItems(result.data());
-            console.log(result.data());
-            chatuid = result.data().uid;
-            console.log(chatuid);
-            console.log(myuid)
+            setUid(result.data().uid);
         })
-    }, []);
+    }, [params.id]);
 
     // 채팅 기능
-    const chat = async (event) => {
-        console.log("작동");
-
-        event.preventDefault();
+    const chat = async (event) => {event.preventDefault();
         db.collection('chatroom').where('who', 'array-contains-any', [myuid, chatuid]).get().then((snapshot) => {
 
             // 만약 채팅방이 없다면
             if (snapshot.empty) {
-
                 var data = {
                     who: [myuid, item.uid],
                     title: item.title,
@@ -38,9 +31,7 @@ export default function Detail() {
                 db.collection('chatroom').add(data).then(() => (
                     window.location.href = "/chatroom")).catch((error) => {
                         console.log(error)
-                    });
-
-
+                });
             }
             else {
                 alert("이미 채팅방이 존재합니다!");
@@ -56,9 +47,6 @@ export default function Detail() {
                 //         console.log(error)
                 //     });;
             }
-
-
-
         })
     }
     return (
@@ -76,7 +64,6 @@ export default function Detail() {
                     <p class="price">가격</p>
                 </div>
                 <button onClick={chat}>채팅걸기</button>
-
             </div>
         </>
     )

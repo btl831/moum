@@ -1,6 +1,5 @@
 import { Button, Container} from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import styles from './MusicPage.module.css'
 import Recommend from './etc/Recommend';

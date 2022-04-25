@@ -33,7 +33,7 @@ export default function ListPage() {
                                         <a className="fw-bold" href={'detail/' + a.id} style={{ color: "black" }}>
                                             {i}.{a.title}
                                         </a>
-                                        <img src={a.image} width="10%"></img>
+                                        <img src={a.image} alt="" width="10%"></img>
                                         <br />
                                         {a.context}
                                     </div>
