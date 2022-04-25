@@ -7,3 +7,6 @@
 .click_motion:hover{
     cursor: pointer;
 }
+.send{
+    float:right;
+}
