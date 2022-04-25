@@ -1,5 +1,7 @@
 import styles from "./Footer.module.css";
+
 export default function Footer() {
+    if(window.location.pathname === "/") return null;
     return(
         <footer className="bg-dark" id={styles.footer}>
             <div className="container">

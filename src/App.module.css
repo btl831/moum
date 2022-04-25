@@ -15,7 +15,7 @@
     height: auto;
     min-height: 100vh;
     padding-bottom:70px;
-    background : linear-gradient(to bottom, #ced1f8 30%, #ebf2ff, #ebf4ff);
+    background : linear-gradient(to bottom, #a397e5, 10%, #dde4f8, 50%, #edf2ff);
 }
 
 @media (prefers-reduced-motion: no-preference) {

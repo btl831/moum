@@ -1,4 +1,4 @@
-import React, { useEffect, useState, NotFound} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +21,6 @@ import Chatroom from './music/community/Chatroom';
 import GamePage from './game/GamePage'
 import Wordle from './game/wordle/Wordle';
 import Wordle_Ranking from './game/wordle/Wordle_Ranking';
-
 
 function App() {
   let [loading, setLoading] = useState(true);
@@ -54,23 +53,25 @@ function App() {
         <Header />
         <div className={styles.wrapper}>
           <Routes>
-            <Route path="/" element={<MainPage />}/>
-            <Route path="/login/*" element={<Login />} />
-            <Route path="/developer/*" element={<Developer />}/>
+            <Route path="/">
+              <Route path="" element={<MainPage />} />
+              <Route path="login/*" element={<Login />} />
+              <Route path="developer/*" element={<Developer />}/>
 
-            <Route path="/music">
-              <Route path="" element={<MusicPage chart_info={chart_info} />} />
-              <Route path="chart" element={<ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
-              <Route path="write" element={<WritePage />} />
-              <Route path="list" element={<ListPage />}/>
-              <Route path="detail/:id" element={<Detail />}/>
-              <Route path="chatroom" element={<Chatroom />} />
-            </Route>
-            
-            <Route path="/game">
-              <Route path="" element={<GamePage />} />
-              <Route path="wordle" element={<Wordle />}/>
-              <Route path="wordle/ranking" element={<Wordle_Ranking />}/>
+              <Route path="music">
+                <Route path="" element={<MusicPage chart_info={chart_info} />} />
+                <Route path="chart" element={<ChartPage chart_info={chart_info} className="mt-20 mb-5" />} />
+                <Route path="write" element={<WritePage />} />
+                <Route path="list" element={<ListPage />}/>
+                <Route path="detail/:id" element={<Detail />}/>
+                <Route path="chatroom" element={<Chatroom />} />
+              </Route>
+              
+              <Route path="game">
+                <Route path="" element={<GamePage />} />
+                <Route path="wordle" element={<Wordle />}/>
+                <Route path="wordle/ranking" element={<Wordle_Ranking />}/>
+              </Route>
             </Route>
           </Routes>
         </div>

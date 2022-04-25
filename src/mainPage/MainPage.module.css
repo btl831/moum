@@ -1,0 +1,33 @@
+.boxContainer {
+    width: 200px;
+    height: 200px;
+    
+    border-radius: 20px;
+    background-color: rgba(255, 252, 248, 0.8);
+    box-shadow: 1px 1px 5px rgb(180, 180, 180), 0px 1px 5px rgb(180, 180, 180);
+    z-index: 0;
+}
+.btn {
+    position: relative;
+    width: 97%;
+    height: 97%;
+    top: 3px;
+
+    border: rgb(190, 190, 190) solid 1px;
+    border-radius: 20px;
+    background-color: transparent;
+    overflow: hidden;
+}
+.text {
+    position: absolute;
+
+    color: white;
+    text-shadow: 1px 1px 1px #000000, -1px -1px 1px #000000;
+    font-size: 25px;
+    z-index: 10;
+}
+.image {
+    position: relative;
+    opacity: 0.65;
+    right: 20px;
+}
