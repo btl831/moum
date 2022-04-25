@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import "./Chatroom.css";
 import { db } from 'firebase/fBase';
+import "./Chatroom.css";
 
 export default function Chatroom() {
     var [myuid, ] = useState(JSON.parse(localStorage.getItem('user')).uid);
@@ -17,7 +17,7 @@ export default function Chatroom() {
             });
             setchatlst(array);
         })
-    }, [chatlst.value]);
+    }, [chatlst.value, myuid]);
 
 
     // document.getElementsByClassName('list-group-item').onClick
@@ -45,9 +45,6 @@ export default function Chatroom() {
             console.log(message);
         })
     }
-    useEffect(() => {
-        console.log(read_msg);
-    }, [read_msg]);
 
     // 채팅 보내는 법
     const send_msg = async (event) => {

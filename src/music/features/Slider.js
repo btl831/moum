@@ -27,7 +27,12 @@ export default function Slider(props) {
             cnt++;
         }
     }
-    const randSongs = useRef(dataList);         // immutable data
+
+    const randSongs = useRef(dataList);     // immutable data
+    gsap.config({                           // gsap settings
+        nullTargetWarn: false,
+        trialWarn: false,
+    });
     
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Animation - Mobile ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const [page, changePage] = useState(0);
@@ -43,7 +48,7 @@ export default function Slider(props) {
                 { y:-100, opacity:0, duration:2 }, { y:0, opacity:1, duration:1 }
             );
         }
-    }, []);
+    }, [isMobile]);
 
     useEffect(() => {
         if(isMobile) {
@@ -52,7 +57,7 @@ export default function Slider(props) {
                 { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
             );
         }
-    }, [page]);
+    }, [page, isMobile]);
 
     useEffect(() => {
         if(isMobile) {
@@ -61,7 +66,7 @@ export default function Slider(props) {
                 { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
             );
         }
-    }, [page]);
+    }, [page, isMobile]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Animation - Tablet ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const mdInitCard1 = useRef(null), mdInitCard2 = useRef(null);
@@ -80,9 +85,9 @@ export default function Slider(props) {
             gsap.fromTo(mdInitCard2.current, 
                 { scaleX:0.8, scaleY:0.8, opacity:0, duration:1 },
                 { scaleX:1, scaleY:1, opacity:1, duration:1 }
-            )
-        ;}
-    }, []);
+            );
+        }
+    }, [isTablet]);
 
     useEffect(() => {
         if(isTablet) {
@@ -92,9 +97,9 @@ export default function Slider(props) {
             );
             gsap.fromTo(mdLeftCard2.current, 
                 { x:-250,  duration:1}, {x:0, duration:1 }
-            )
-        ;}
-    }, [page]);
+            );
+        }
+    }, [page, isTablet]);
 
     useEffect(() => {
         if(isTablet) {
@@ -104,9 +109,9 @@ export default function Slider(props) {
             );
             gsap.fromTo(mdRightCard2.current, 
                 { x:250,  duration:1 }, {x:0, duration:1 }
-            )
-        ;}
-    }, [page]);
+            );
+        }
+    }, [page, isTablet]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Animation - PC ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const initCard1 = useRef(null), initCard2 = useRef(null), initCard3 = useRef(null);
@@ -133,7 +138,7 @@ export default function Slider(props) {
                 { scaleX:0.8, scaleY:0.8, y:0, opacity:0.7, duration:1 }
             );
         }
-    }, []);
+    }, [isTablet]);
 
     useEffect(() => {
         if(!isTablet) {
@@ -150,11 +155,11 @@ export default function Slider(props) {
                 { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
             );
         }
-    }, [page]);
+    }, [page, isTablet]);
 
     useEffect(() => {
         if(!isTablet) {
-                gsap.fromTo(rightCard1.current, 
+            gsap.fromTo(rightCard1.current, 
                 { scaleX:0, scaleY:0.3, x:300, opacity:0, duration:2 },
                 { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
             );
@@ -167,40 +172,39 @@ export default function Slider(props) {
                 { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
             );
         }
-    }, [page]);
+    }, [page, isTablet]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Exception handling ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const exceptionBtn = useRef(null);
     function smEx(param) {
-        if(isTablet) {
-            gsap.set(param.current, 
-                { scaleX:1, scaleY:1, opacity:1 }
-            );
-        }
+        gsap.set(param.current, 
+            { scaleX:1, scaleY:1, opacity:1 }
+        );
     }
     function lgEx(param) {
-        if(!isTablet) {
-            gsap.set(param.current, 
-                { scaleX:0.8, scaleY:0.8, opacity:0.7 }
-            );
-        }
+        gsap.set(param.current, 
+            { scaleX:0.8, scaleY:0.8, opacity:0.7 }
+        );
     }
 
     useEffect(() => {
         /* tablet size */
-        smEx(mdInitCard1);
-        smEx(mdRightCard2);
-        smEx(mdLeftCard1);
-        smEx(exceptionBtn);
-        
+        if(isTablet) {
+            smEx(mdInitCard1);
+            smEx(mdRightCard2);
+            smEx(mdLeftCard1);
+            smEx(exceptionBtn);
+        }
         /* pc size */
-        lgEx(initCard1);
-        lgEx(initCard3);
-        lgEx(leftCard1);
-        lgEx(leftCard3);
-        lgEx(rightCard1);
-        lgEx(rightCard3);
-    }, []);
+        else {
+            lgEx(initCard1);
+            lgEx(initCard3);
+            lgEx(leftCard1);
+            lgEx(leftCard3);
+            lgEx(rightCard1);
+            lgEx(rightCard3);
+        }
+    }, [isTablet]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Return ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     /* 페이지 전환 - Mobile */

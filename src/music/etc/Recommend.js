@@ -1,6 +1,6 @@
 import './Recommend.css';
 import { Button, Collapse } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from 'firebase/fBase';
 
 
@@ -25,20 +25,26 @@ export default function Recommend() {
         <>
             <div className='carousel'>
                 <div className='container pt-5'>
-                    <iframe className='pt-1  pl-3' width="400vh" height="270vh" src="https://www.youtube.com/embed/tHmc2mAXZSA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe className='pt-1  pl-3' width="400vh" height="270vh"
+                        src="https://www.youtube.com/embed/tHmc2mAXZSA"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen>
+                    </iframe>
                 </div>
             </div>
             <div className='container row'>
                 {
                     item.map((a, i) => {
                         return (
-                            <>
+                            <React.Fragment key={i}>
                                 <div className='col-1'></div>
                                 <Button className='btn1 col-3' onClick={() => { setOpen(false); setOpen(!open); setClick(a); }}
                                     aria-controls="example-collapse-text" aria-expanded={open}>
                                         {a.singer}
                                 </Button>
-                            </>
+                            </React.Fragment>
                         )
                     })
                 }
