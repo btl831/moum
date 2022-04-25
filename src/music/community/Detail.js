@@ -112,16 +112,16 @@ export default function Detail() {
                         <p>작성자: {item.displayName}</p>
                         <hr />
                         <h5 className="title">내용 : {item.context}</h5>
-                        작성일자: {
-                                                    Intl.DateTimeFormat('ko-KR', {
-                                                        year: 'numeric',
-                                                        month: '2-digit',
-                                                        day: '2-digit',
-                                                        hour: '2-digit',
-                                                        minute: '2-digit',
-                                                        second: '2-digit',
-                                                    }).format(item.date.seconds * 1000)
-                                                }
+                        {/* 작성일자: {
+                                    Intl.DateTimeFormat('ko-KR', {
+                                    year: 'numeric',
+                                    month: '2-digit',
+                                    day: '2-digit',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    second: '2-digit',
+                                }).format(item.date.seconds * 1000)
+                                } */}
                     </div>
                     <Button onClick={chat} variant="dark">채팅걸기</Button>
                     <hr />
