@@ -72,14 +72,14 @@ export default function WritePage() {
     return (
         <>
             <div>
-                <div class="container mb-3">
+                <div className="container mb-3">
                     <br />
-                    <input type="text" class="form-control" id="title" placeholder="title" onChange={onChange} />
-                    <textarea class="form-control mt-2" id="content" onChange={onChange} placeholder="content" rows="4" cols="50"></textarea>
-                    <input class="form-control mt-2" type="file" id="image" onChange={onChange} />
+                    <input type="text" className="form-control" id="title" placeholder="title" onChange={onChange} />
+                    <textarea className="form-control mt-2" id="content" onChange={onChange} placeholder="content" rows="4" cols="50"></textarea>
+                    <input className="form-control mt-2" type="file" id="image" onChange={onChange} />
                 </div>
 
-                <button class="btn btn-danger" id="send"onClick={uploadimg}>올리기</button>
+                <button className="btn btn-danger" id="send"onClick={uploadimg}>올리기</button>
                 <Button onClick={() => { navigate(-1) }}>돌아가기</Button>
             </div>
         </>

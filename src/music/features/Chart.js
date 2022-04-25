@@ -100,7 +100,7 @@ function PlayBox(props) {
                 />
                 <Card.Title>{props.nowSong.title}</Card.Title>
                 <Card.Text>
-                    <p>{props.nowSong.singer} </p>
+                    {props.nowSong.singer}
                 </Card.Text>
             </Card.Body>
         </Card>
