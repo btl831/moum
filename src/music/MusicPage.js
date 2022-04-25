@@ -9,7 +9,7 @@ import Slider from './features/Slider';
 import ChartPage from './features/Chart';
 import Summary from 'music/community/Summary';
 
-import { faMoneyCheck, faHeadphones } from "@fortawesome/free-solid-svg-icons";
+import { faMoneyCheck, faHeadphones} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function MusicPage(props) {
@@ -74,7 +74,7 @@ function MusicPage(props) {
                 <div className="col-md-5 mt-5" id={styles.index}>
                     <div className="row mt-4">
                         <div className="col-sm-10 col-md-10">
-                            <h5 className={styles.top100}>TOP 100</h5>
+                            <h5 className={styles.top100}>TOP 100 </h5> 
                         </div>
                         <div className="col-sm-2 col-md-2">
                             <button className={styles.btn} onClick={()=>window.location.href="/music/chart"}>
@@ -83,7 +83,7 @@ function MusicPage(props) {
                         </div>
                     </div>
                     <div className="row mt-2">
-                    <ChartPage chart_info={props.chart_info.slice(undefined, 5)} />
+                    <ChartPage chart_info={props.chart_info.slice(undefined, 7)} />
                     </div>
                     <div className="row" style={{ height:"100px"}} />
                 </div>
