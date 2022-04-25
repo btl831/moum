@@ -56,8 +56,7 @@ export default function Wordle() {
                 useranswer = ""
             }
             if (count === 5) {
-                alert(displayName+"님 성공하지 못했어요! 내일 하세요.")
-
+                alert(displayName+"님 성공하지 못했어요! 내일 하세요.");
                 already();
             }
         }
@@ -68,21 +67,23 @@ export default function Wordle() {
             updateGrade();
         }
     }
+    
     // 버튼 지우기
     const already = () =>{
         setFailed(1);
     }
     const input_tag = () => {
+        var count = 0;
         const result = [];
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 5; j++) {
+                count += 1;
                 if (i === 0) {
                     result.push(<input className={'input' + i} id='input' />);
                 }
                 else {
                     result.push(<input className={'input' + i} id='input' disabled />);
                 }
-
             }
             result.push(<br />)
         }
@@ -91,7 +92,7 @@ export default function Wordle() {
     return (
         <>
             <div>
-            <FontAwesomeIcon icon={faRankingStar} size={"2x"} className="fa"/>
+                <FontAwesomeIcon icon={faRankingStar} size={"2x"} className="fa"/>
                 <Button variant="light outline-secondary" onClick={()=>window.location.href='/game/wordle/ranking'}>랭킹보기</Button>
             </div>
             <div className='main_wordle'>
