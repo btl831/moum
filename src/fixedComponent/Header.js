@@ -26,10 +26,10 @@ export default function Header() {
                 </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/music">Music</Nav.Link>
+                    <Nav.Link href="/game">Game</Nav.Link>
                     {
                         userObj != null
                         ? ( <>
-                        <Nav.Link href="/game">Game</Nav.Link>
                         <Nav.Link href="/music/chatroom">채팅방</Nav.Link>
                         </>
                         )
