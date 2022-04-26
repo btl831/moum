@@ -73,7 +73,6 @@ export default function Wordle() {
         setFailed(1);
     }
     const input_tag = () => {
-        var count = 0;
         const result = [];
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < 5; j++) {
