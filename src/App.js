@@ -7,6 +7,7 @@ import styles from './App.module.css'
 import MainPage from './mainPage/MainPage'
 
 import Login from './firebase/Login'
+import NaverLogin from './firebase/NaverLogin'
 import Header from './fixedComponent/Header'
 import Footer from './fixedComponent/Footer'
 import Developer from './fixedComponent/Developer'
@@ -55,7 +56,8 @@ function App() {
           <Routes>
             <Route path="/">
               <Route path="" element={<MainPage />} />
-              <Route path="login/*" element={<Login />} />
+              <Route path="login" element={<Login />} />
+              <Route path="naver" element={<NaverLogin />} />
               <Route path="developer/*" element={<Developer />}/>
 
               <Route path="music">
