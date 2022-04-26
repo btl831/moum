@@ -15,7 +15,6 @@ export default function Slider(props) {
         query : "(min-width:768px) and (max-width:1199px)"
     });
 
-
     /* pick random song */
     const NUM = 8;
     let chart_info = Object.values(props.chart_info);
@@ -28,7 +27,12 @@ export default function Slider(props) {
             cnt++;
         }
     }
-    const randSongs = useRef(dataList);         // immutable data
+
+    const randSongs = useRef(dataList);     // immutable data
+    gsap.config({                           // gsap settings
+        nullTargetWarn: false,
+        trialWarn: false,
+    });
     
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Animation - Mobile ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const [page, changePage] = useState(0);
@@ -39,24 +43,30 @@ export default function Slider(props) {
     const [smCards, direction] = useState(smInitCard);
 
     useEffect(() => {
-        gsap.fromTo(smInitCard.current, 
-            { y:-100, opacity:0, duration:2 }, { y:0, opacity:1, duration:1 }
-        );
-    }, []);
+        if(isMobile) {
+            gsap.fromTo(smInitCard.current, 
+                { y:-100, opacity:0, duration:2 }, { y:0, opacity:1, duration:1 }
+            );
+        }
+    }, [isMobile]);
 
     useEffect(() => {
-        gsap.fromTo(smLeftCard.current, 
-            { scaleX:0, scaleY:0.7, x:-300, opacity:0, duration:2 },
-            { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
-        );
-    }, [page]);
+        if(isMobile) {
+            gsap.fromTo(smLeftCard.current, 
+                { scaleX:0, scaleY:0.7, x:-300, opacity:0, duration:2 },
+                { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
+            );
+        }
+    }, [page, isMobile]);
 
     useEffect(() => {
-        gsap.fromTo(smRightCard.current, 
-            { scaleX:0, scaleY:0.7, x:300, opacity:0, duration:2 },
-            { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
-        );
-    }, [page]);
+        if(isMobile) {
+            gsap.fromTo(smRightCard.current, 
+                { scaleX:0, scaleY:0.7, x:300, opacity:0, duration:2 },
+                { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
+            );
+        }
+    }, [page, isMobile]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Animation - Tablet ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const mdInitCard1 = useRef(null), mdInitCard2 = useRef(null);
@@ -67,35 +77,41 @@ export default function Slider(props) {
     const [mdSecondCards, mdAction2] = useState(mdInitCard2);
 
     useEffect(() => {
-        gsap.fromTo(mdInitCard1.current,
-            { scaleX:0.8, scaleY:0.8, opacity:0, duration:1 },
-            { scaleX:1, scaleY:1, opacity:1, duration:1 }
-        );
-        gsap.fromTo(mdInitCard2.current, 
-            { scaleX:0.8, scaleY:0.8, opacity:0, duration:1 },
-            { scaleX:1, scaleY:1, opacity:1, duration:1 }
-        );
-    }, []);
+        if(isTablet) {
+            gsap.fromTo(mdInitCard1.current,
+                { scaleX:0.8, scaleY:0.8, opacity:0, duration:1 },
+                { scaleX:1, scaleY:1, opacity:1, duration:1 }
+            );
+            gsap.fromTo(mdInitCard2.current, 
+                { scaleX:0.8, scaleY:0.8, opacity:0, duration:1 },
+                { scaleX:1, scaleY:1, opacity:1, duration:1 }
+            );
+        }
+    }, [isTablet]);
 
     useEffect(() => {
-        gsap.fromTo(mdLeftCard1.current, 
-            { scaleX:0, scaleY:0.7, x:-250, opacity:0, duration:2 },
-            { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
-        );
-        gsap.fromTo(mdLeftCard2.current, 
-            { x:-250,  duration:1}, {x:0, duration:1 }
-        );
-    }, [page]);
+        if(isTablet) {
+            gsap.fromTo(mdLeftCard1.current, 
+                { scaleX:0, scaleY:0.7, x:-250, opacity:0, duration:2 },
+                { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
+            );
+            gsap.fromTo(mdLeftCard2.current, 
+                { x:-250,  duration:1}, {x:0, duration:1 }
+            );
+        }
+    }, [page, isTablet]);
 
     useEffect(() => {
-        gsap.fromTo(mdRightCard1.current, 
-            { scaleX:0, scaleY:0.7, x:250, opacity:0, duration:2 },
-            { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
-        );
-        gsap.fromTo(mdRightCard2.current, 
-            { x:250,  duration:1 }, {x:0, duration:1 }
-        );
-    }, [page]);
+        if(isTablet) {
+            gsap.fromTo(mdRightCard1.current, 
+                { scaleX:0, scaleY:0.7, x:250, opacity:0, duration:2 },
+                { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
+            );
+            gsap.fromTo(mdRightCard2.current, 
+                { x:250,  duration:1 }, {x:0, duration:1 }
+            );
+        }
+    }, [page, isTablet]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Animation - PC ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const initCard1 = useRef(null), initCard2 = useRef(null), initCard3 = useRef(null);
@@ -108,49 +124,55 @@ export default function Slider(props) {
     const [thirdCards, action3] = useState(initCard3);
 
     useEffect(() => {
-        gsap.fromTo(initCard1.current,
-            { scaleX:0.8, scaleY:0.8, y:-100, opacity:0, duration:2 },
-            { scaleX:0.8, scaleY:0.8, y:0, opacity:0.7, duration:1 }
-        );
-        gsap.fromTo(initCard2.current, 
-            { y:-100, opacity:0, duration:2 },
-            { y:0, opacity:1, duration:1 }
-        );
-        gsap.fromTo(initCard3.current,
-            { scaleX:0.8, scaleY:0.8, y:-100, opacity:0, duration:2 },
-            { scaleX:0.8, scaleY:0.8, y:0, opacity:0.7, duration:1 }
-        );
-    }, []);
+        if(!isTablet) {
+            gsap.fromTo(initCard1.current,
+                { scaleX:0.8, scaleY:0.8, y:-100, opacity:0, duration:2 },
+                { scaleX:0.8, scaleY:0.8, y:0, opacity:0.7, duration:1 }
+            );
+            gsap.fromTo(initCard2.current, 
+                { y:-100, opacity:0, duration:2 },
+                { y:0, opacity:1, duration:1 }
+            );
+            gsap.fromTo(initCard3.current,
+                { scaleX:0.8, scaleY:0.8, y:-100, opacity:0, duration:2 },
+                { scaleX:0.8, scaleY:0.8, y:0, opacity:0.7, duration:1 }
+            );
+        }
+    }, [isTablet]);
 
     useEffect(() => {
-        gsap.fromTo(leftCard1.current, 
-            { scaleX:0, scaleY:0.3, x:-300, opacity:0, duration:2 },
-            { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
-        );
-        gsap.fromTo(leftCard2.current, 
-            { scaleX:0.8, scaleY:0.8, x:-300, opacity:0.7, duration:2 },
-            { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
-        );
-        gsap.fromTo(leftCard3.current, 
-            { scaleX:1, scaleY:1, x:-300, opacity:1, duration:2 },
-            { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
-        );
-    }, [page]);
+        if(!isTablet) {
+            gsap.fromTo(leftCard1.current, 
+                { scaleX:0, scaleY:0.3, x:-300, opacity:0, duration:2 },
+                { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
+            );
+            gsap.fromTo(leftCard2.current, 
+                { scaleX:0.8, scaleY:0.8, x:-300, opacity:0.7, duration:2 },
+                { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
+            );
+            gsap.fromTo(leftCard3.current, 
+                { scaleX:1, scaleY:1, x:-300, opacity:1, duration:2 },
+                { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
+            );
+        }
+    }, [page, isTablet]);
 
     useEffect(() => {
-        gsap.fromTo(rightCard1.current, 
-            { scaleX:0, scaleY:0.3, x:300, opacity:0, duration:2 },
-            { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
-        );
-        gsap.fromTo(rightCard2.current, 
-            { scaleX:0.8, scaleY:0.8, x:300, opacity:0.7, duration:2 },
-            { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
-        );
-        gsap.fromTo(rightCard3.current, 
-            { scaleX:1, scaleY:1, x:300, opacity:1, duration:2 },
-            { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
-        );
-    }, [page]);
+        if(!isTablet) {
+            gsap.fromTo(rightCard1.current, 
+                { scaleX:0, scaleY:0.3, x:300, opacity:0, duration:2 },
+                { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
+            );
+            gsap.fromTo(rightCard2.current, 
+                { scaleX:0.8, scaleY:0.8, x:300, opacity:0.7, duration:2 },
+                { scaleX:1, scaleY:1, x:0, opacity:1, duration:1 }
+            );
+            gsap.fromTo(rightCard3.current, 
+                { scaleX:1, scaleY:1, x:300, opacity:1, duration:2 },
+                { scaleX:0.8, scaleY:0.8, x:0, opacity:0.7, duration:1 }
+            );
+        }
+    }, [page, isTablet]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Exception handling ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     const exceptionBtn = useRef(null);
@@ -167,19 +189,22 @@ export default function Slider(props) {
 
     useEffect(() => {
         /* tablet size */
-        smEx(mdInitCard1);
-        smEx(mdRightCard2);
-        smEx(mdLeftCard1);
-        smEx(exceptionBtn);
-        
+        if(isTablet) {
+            smEx(mdInitCard1);
+            smEx(mdRightCard2);
+            smEx(mdLeftCard1);
+            smEx(exceptionBtn);
+        }
         /* pc size */
-        lgEx(initCard1);
-        lgEx(initCard3);
-        lgEx(leftCard1);
-        lgEx(leftCard3);
-        lgEx(rightCard1);
-        lgEx(rightCard3);
-    }, [window.innerWidth]);
+        else {
+            lgEx(initCard1);
+            lgEx(initCard3);
+            lgEx(leftCard1);
+            lgEx(leftCard3);
+            lgEx(rightCard1);
+            lgEx(rightCard3);
+        }
+    }, [isTablet]);
 
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ Return ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
     /* 페이지 전환 - Mobile */
@@ -231,7 +256,7 @@ export default function Slider(props) {
         }
     }
     function mdShowRight() {
-        if(page+2 == NUM) {
+        if(page+2 === NUM) {
             mdAction1(mdRightCard2);
             mdAction2(mdRightCard1);
             return;
@@ -339,11 +364,10 @@ function Deck(props) {
         <Card.Body>
             <Card.Title>{song.title}</Card.Title>
             <Card.Text>
-                <p>가수 : {song.singer} </p>
+                가수 : {song.singer}
             </Card.Text>
             <AlertSong pick_song={song} />
         </Card.Body>
-        <br/>
       </Card>
     )
 }

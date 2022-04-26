@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import { Table } from 'react-bootstrap';
-import './Wordle_Ranking.css'
-import { db } from '../../firebase/fBase'
+import './WordleRanking.css'
+import { db } from 'firebase/fBase'
 
-export default function Wordle_Ranking(){
+export default function WordleRanking(){
     let [item,setItems] = useState([]);
     
     useEffect(()=>{
@@ -13,9 +13,8 @@ export default function Wordle_Ranking(){
                 array.push(doc.data());
             });
            setItems(array);
-           console.log(item);
         })
-    },[item.values])
+    },[item])
 
     return(
         <>
@@ -40,25 +39,25 @@ export default function Wordle_Ranking(){
                             {
                                 item.map((a,i)=>{
                                     return(
-                                        <>
-                                        <tr>
-                                            <td>{i}</td>
-                                            <td>{a.displayName}</td>
-                                            <td>{a.score}</td>
-                                            <td>
-                                                {
-                                                    Intl.DateTimeFormat('ko-KR', {
-                                                        year: 'numeric',
-                                                        month: '2-digit',
-                                                        day: '2-digit',
-                                                        hour: '2-digit',
-                                                        minute: '2-digit',
-                                                        second: '2-digit',
-                                                    }).format(a.date.seconds * 1000)
-                                                }
-                                            </td>
-                                        </tr>
-                                        </>
+                                        <React.Fragment key={i}>
+                                            <tr>
+                                                <td>{i}</td>
+                                                <td>{a.displayName}</td>
+                                                <td>{a.score}</td>
+                                                <td>
+                                                    {
+                                                        Intl.DateTimeFormat('ko-KR', {
+                                                            year: 'numeric',
+                                                            month: '2-digit',
+                                                            day: '2-digit',
+                                                            hour: '2-digit',
+                                                            minute: '2-digit',
+                                                            second: '2-digit',
+                                                        }).format(a.date.seconds * 1000)
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </React.Fragment>
                                     )      
                                 })
                             }

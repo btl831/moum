@@ -6,7 +6,7 @@ export default function Developer() {
             <div className="container ">
                 <div className="row pt-4">
                     <div className="col-2 col-md-2 order-md-2">
-                        <img src="dev.png" width="100%"/>
+                        <img src="dev.png" alt="" width="100%"/>
                     </div>
                     <div className="col-10 col-md-5 order-md-1" id='info'>
                         <p className=''>신봉규</p>
@@ -17,11 +17,10 @@ export default function Developer() {
                     <div className="col-md-5 order-md-3"></div>
                 </div>
 
-
-                {/* seconde developer input */}
+                {/* second developer input */}
                 <div className="row mt-4">
                     <div className="col-2 col-md-2 order-md-2">
-                        <img src="dev.png" width="100%"/>
+                        <img src="dev.png" alt="" width="100%"/>
                     </div>
                     <div class="col-10 col-md-5 order-md-3">
                         <p className=''>신봉규</p>

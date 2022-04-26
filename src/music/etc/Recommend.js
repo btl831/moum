@@ -1,6 +1,6 @@
 import './Recommend.css';
 import { Button, Collapse } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from 'firebase/fBase';
 import ReactPlayer from 'react-player';
 
@@ -45,7 +45,8 @@ export default function Recommend() {
                 {
                     item.map((a, i) => {
                         return (
-                            <>
+                            
+                            <React.Fragment key={i}>
                                 <div className='col-1'></div>
                                 <Button className='btn1 col-3 mt-3' onClick={() => { 
                                     if(open == false ){
@@ -57,7 +58,7 @@ export default function Recommend() {
                                     aria-controls="example-collapse-text"
                                     aria-expanded={open}>{a.singer}</Button>
                                     
-                            </>
+                            </React.Fragment>
                         )
                     })
                 }
@@ -68,7 +69,7 @@ export default function Recommend() {
                 <div className='col-1'></div>
                 <Button className='btn3 col-3'>요네즈 켄시</Button> */}
                 <div>
-                    {open == true
+                    {open === true
                         ? <Collapse in={open}>
                             <div id="example-collapse-text">
                                 {click.context}
@@ -78,10 +79,8 @@ export default function Recommend() {
                         </Collapse>
                         : null
                     }
-
                 </div>
             </div>
         </>
-
     );
 }

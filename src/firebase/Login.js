@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Container,Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 
@@ -72,10 +72,9 @@ const Login = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
-            let data;
             if (newAccount) {
                 // create account
-                data = await authService.createUserWithEmailAndPassword(email, password).then(result =>{
+                await authService.createUserWithEmailAndPassword(email, password).then(result =>{
                     // store 저장
                     var userprofile = {
                         displayName : displayName,

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Detail() {
     const params = useParams();
     let [item, setItems] = useState([]);
-    var chatuid = "";
+    let [chatuid, setUid] = useState("");
     const myuid = JSON.parse(localStorage.getItem('user')).uid;
     const [title, setTitle] = useState('');
     const [context, setConent] = useState('');
@@ -18,10 +18,7 @@ export default function Detail() {
     useEffect(() => {
         db.collection('Comment').doc(params.id).get().then((result) => {
             setItems(result.data());
-            console.log(result.data());
-            chatuid = result.data().uid;
-            console.log(chatuid);
-            console.log(myuid)
+            setUid(result.data().uid);
         })
 
     }, []);
@@ -36,10 +33,7 @@ export default function Detail() {
     }, [])
 
     // 채팅 기능
-    const chat = async (event) => {
-        console.log("작동");
-
-        event.preventDefault();
+    const chat = async (event) => {event.preventDefault();
         db.collection('chatroom').where('who', 'array-contains-any', [myuid, chatuid]).get().then((snapshot) => {
             // 만약 채팅방이 없다면
             if (snapshot.empty) {

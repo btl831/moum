@@ -1,10 +1,9 @@
-import React, { Component, useEffect, useState } from 'react';
-import "./Chatroom.css";
+import React, { useEffect, useState } from 'react';
 import { db } from 'firebase/fBase';
+import "./Chatroom.css";
 
 export default function Chatroom() {
-    var myuid = JSON.parse(localStorage.getItem('user')).uid;
-    console.log(myuid)
+    var [myuid, ] = useState(JSON.parse(localStorage.getItem('user')).uid);
     var [chatlst, setchatlst] = useState([]);
     let [inputValue, setInputValue] = useState();
     let [chatid, setChatId] = useState("");
@@ -17,19 +16,17 @@ export default function Chatroom() {
                 array.push(doc);
             });
             setchatlst(array);
-            console.log(array);
         })
-    }, [chatlst.value]);
+    }, [chatlst.value, myuid]);
 
 
     // document.getElementsByClassName('list-group-item').onClick
     //     chatid = this.document.getElementsByClassName('text-small');
     //     read_msg();
     // })
+
     // 채팅 읽어오는 법
     const read_msg = async (event) => {
-
-        console.log(chatid);
         // event bubbling 방지하는 함수
         // event.preventDefault();
 
@@ -48,9 +45,6 @@ export default function Chatroom() {
             console.log(message);
         })
     }
-    useEffect(() => {
-        console.log(read_msg);
-    }, [read_msg]);
 
     // 채팅 보내는 법
     const send_msg = async (event) => {
@@ -93,7 +87,7 @@ export default function Chatroom() {
                             <ul className="list-group chat-content">
                                 {
                                     message.map((a, i) => {
-                                        if (a.uid == myuid) {
+                                        if (a.uid === myuid) {
                                             return (
                                                 <li><span class="chat-box mine">{a.content}</span></li>
                                             )
@@ -107,7 +101,7 @@ export default function Chatroom() {
                                 }
                             </ul>
                             <div className="input-group">
-                                <input className="form-control" id="chat-input" onChange={(event) => (event.preventDefault(), setInputValue(event.target.value))} />
+                                <input className="form-control" id="chat-input" onChange={(event) => {event.preventDefault(); setInputValue(event.target.value);}} />
                                 <button className="btn btn-secondary" id="send" onClick={send_msg}>전송</button>
                             </div>
                         </div>
