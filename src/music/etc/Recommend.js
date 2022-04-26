@@ -32,7 +32,7 @@ export default function Recommend() {
                         :<ReactPlayer
                         url = {click.url}
                         className = "player"
-                        width = '50vh'
+                        width = '70vh'
                         height = '50vh'
                         playing
                         controls = {true}
