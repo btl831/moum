@@ -14,33 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function MusicPage(props) {
     let [clickvalue,setClickvalue] = useState("");
     
-// =======
-// import axios from 'axios';
 
-// function Body(props) {
-
-//     const location = useLocation();  
-
-//     const getNaverToken = () => {
-//       if (!location.hash) return;
-//       const token = location.hash.split('=')[1].split('&')[0];
-//       console.log(token);
-//       axios.post(`http://localhost:4000/user/naver-login`, {
-//         token
-//     }, {
-//         withCredentials: true
-//     })
-//     .then((res)=> {
-//         window.location.replace('/')
-//       //서버측에서 로직이 완료되면 홈으로 보내준다
-//     })
-//     };
-  
-//     useEffect(() => {
-//       getNaverToken();
-//     }, []);
-
-// >>>>>>> de7016b667d79d3a7a12581ed6143500eeacc67f
     return(
         <>
         <Container>
