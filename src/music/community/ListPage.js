@@ -45,8 +45,8 @@ export default function ListPage() {
 
                                         </div>
                                         <div className='contextbox'>
-                                        작성자:{a.displayName}
-                                        <p> {a.context} </p>
+                                            작성자:{a.displayName}
+                                            <p> {a.context} </p>
                                         </div>
 
 
@@ -56,7 +56,7 @@ export default function ListPage() {
                                     <div className='col-md-2'>
                                         {myuid == a.uid
                                             ? <div className='pb-3'>
-                                                <Button  >수정하기</Button>
+                                                <Button href={'edit/' + a.id}>수정하기</Button>
                                             </div>
                                             :
                                             null

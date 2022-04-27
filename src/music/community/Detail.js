@@ -96,6 +96,15 @@ export default function Detail() {
         })
 
     }
+    const deleteitem = (event) => {
+        event.preventDefault();
+        db.collection('Comment').doc(params.id).delete().then(() => {
+            alert('삭제완료')
+            window.location.href = "/music/list"
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
     return (
         <>
             <div className="container pt-3">
@@ -110,6 +119,11 @@ export default function Detail() {
                     <div>
                         <h5>제목 : {item.title}</h5>
                         <p>작성자: {item.displayName}</p>
+                        {
+                            myuid == item.uid
+                                ? <Button variant='danger' onClick={deleteitem}>삭제하기</Button>
+                                : null
+                        }
                         <hr />
                         <h5 className="title">내용 : {item.context}</h5>
                         {/* 작성일자: {
@@ -138,15 +152,15 @@ export default function Detail() {
                                     <p>제목:{a.title}</p>
                                     <p>내용:{a.context}</p>
                                     <p>작성 일자: {
-                                                    Intl.DateTimeFormat('ko-KR', {
-                                                        year: 'numeric',
-                                                        month: '2-digit',
-                                                        day: '2-digit',
-                                                        hour: '2-digit',
-                                                        minute: '2-digit',
-                                                        second: '2-digit',
-                                                    }).format(a.date.seconds * 1000)
-                                                }</p>
+                                        Intl.DateTimeFormat('ko-KR', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            second: '2-digit',
+                                        }).format(a.date.seconds * 1000)
+                                    }</p>
                                 </div>
                             )
 
