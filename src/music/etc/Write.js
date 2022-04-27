@@ -44,7 +44,7 @@ export default function WritePage() {
                             displayName: JSON.parse(localStorage.getItem('user')).displayName
                         }
                         db.collection('Comment').add(data).then(() => {
-                            window.location.href = '/'
+                            window.location.href = '/music'
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -62,7 +62,7 @@ export default function WritePage() {
                 displayName: JSON.parse(localStorage.getItem('user')).displayName
             }
             db.collection('Comment').add(data).then(() => {
-                window.location.href = '/'
+                window.location.href = '/music'
             }).catch((error) => {
                 console.log(error)
             })
