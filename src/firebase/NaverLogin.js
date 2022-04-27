@@ -1,49 +1,62 @@
-
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { db } from './fBase';
-import {axios} from 'axios'
 
 function NaverLogin() {
-
-    
-    const Naver =()=> {
-        const naverLogin = new window.naver.LoginWithNaverId({
-            clientId: "jsIZ08qqS6zaoW5Gvz59",
-            callbackUrl: "http://127.0.0.1:4000/",
+    const initializeNaverLogin = () => {
+        const { naver } = window
+        const naverLogin = new naver.LoginWithNaverId(
+            {
+            clientId: "NNJFr1UPv2ZgMcuk7WsY",
+            callbackUrl: "http://localhost:3000/naver",
             isPopup: false,
-            loginButton: { color: "green", type: 1, height: 25 },
-            callbackHandle: true,
-        });
-
-        // 네이버 로그인 초기화
+            loginButton: { color: "green", type: 3, height: 40 }
+            }
+        );
         naverLogin.init();
-        naverLogin.logout();
-
-        naverLogin.getLoginStatus((status) => {
-            if (status) {
-                console.log("Naver 로그인 상태", naverLogin.user);
-
-                // var naver_id_login = new naver_id_login("jsIZ08qqS6zaoW5Gvz59", "http://localhost:3000/")
-                // var uid = naver_id_login.getProfileData('email');
-                // var displayName = naver_id_login.getProfileData('name');
-
-                // var userprofile = {
-                //     displayName :displayName ,
-                //     uid : uid
-                // }
-
-                // localStorage.setItem('user',JSON.stringify(userprofile));
-                // db.collection('user').doc(uid).set(userprofile);
-                // GetProfile()
-                console.log("success");
-            }
-            else {
-                console.log("Naver 비로그인 상태")
-            }
-        })
     }
 
+    useEffect(() => {
+        initializeNaverLogin();
+    }, []);
 
-    return <div id="naverIdLogin"></div>
+    const navigate = useNavigate();
+    const location = useLocation(); 
+    const getNaverToken = async () => {
+        if (!location.hash) return;
+        const token = location.hash.split('=')[1].split('&')[0];
+        const axios = require('axios');
+        var userData;
+        try {
+            await axios.get('/api/v1/nid/me', {
+                headers : {
+                    'Authorization' : `Bearer ${token}`,
+                    'Access-Control-Allow-Origin' : "*",
+                }
+            }).then((res) => {
+                userData = res.data.response;
+            });
+        } catch(err) {
+            console.log(err);
+        }
+
+        var userprofile = {
+            realName : userData.name,
+            email : userData.email,
+            displayName : (userData.nickname)?userData.nickname:userData.name
+        }
+
+        await db.collection('user').doc(userData.id).set(userprofile);
+        localStorage.setItem('user', JSON.stringify(userprofile));
+        navigate(-3);
+    };
+
+    useEffect(() => {
+        getNaverToken();
+    }, []);
+    
+    return(
+        <div className="grid-naver" id="naverIdLogin"></div>
+    )
 }
 export default NaverLogin;
