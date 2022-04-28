@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { db, storage } from 'firebase/fBase';
 
+
 export default function WritePage() {
+    const params = useParams();
     const [title, setTitle] = useState('');
     const [context, setConent] = useState('');
+    const [image, setImage] = useState('');
     let navigate = useNavigate();
+    // 입력되어있는 정보 출력
+    useEffect(() => {
+        db.collection('Comment').doc(params.id).get().then((result) => {
+            setTitle(result.data().title);
+            setConent(result.data().context);
+            setImage(result.data().image);
+        })
+
+    }, []);
+
     // 바뀌는 것에 대한 메소드
     const onChange = (event) => {
         const { target: { id, value } } = event;
         if (id === 'title') {
-            setTitle(value);
+            setTitle(event.target.value);
+
         }
         else if (id === "content") {
-            setConent(value);
+            setConent(event.target.value);
         }
     }
 
@@ -40,11 +54,9 @@ export default function WritePage() {
                             context: context,
                             date: new Date(),
                             image: url,
-                            uid: JSON.parse(localStorage.getItem('user')).uid,
-                            displayName: JSON.parse(localStorage.getItem('user')).displayName
                         }
-                        db.collection('Comment').add(data).then(() => {
-                            window.location.href = '/music'
+                        db.collection('Comment').doc(params.id).update(data).then(() => {
+                            window.location.href = '/music/list'
                         }).catch((error) => {
                             console.log(error)
                         })
@@ -58,30 +70,31 @@ export default function WritePage() {
                 title: title,
                 context: context,
                 date: new Date(),
-                uid: JSON.parse(localStorage.getItem('user')).uid,
-                displayName: JSON.parse(localStorage.getItem('user')).displayName
             }
-            db.collection('Comment').add(data).then(() => {
-                window.location.href = '/music'
+            db.collection('Comment').doc(params.id).update(data).then(() => {
+                window.location.href = '/music/list'
             }).catch((error) => {
                 console.log(error)
             })
 
         }
+
     }
+
     return (
         <>
             <div>
-                <div className="container mb-3">
+                <div class="container mb-3">
                     <br />
-                    <input type="text" className="form-control" id="title" placeholder="title" onChange={onChange} />
-                    <textarea className="form-control mt-2" id="content" onChange={onChange} placeholder="content" rows="4" cols="50"></textarea>
+                    <input type="text" className="form-control" id="title" placeholder="title" onChange={onChange} value={title} />
+                    <textarea className="form-control mt-2" id="content" onChange={onChange} placeholder="content" rows="4" cols="50" value={context}></textarea>
                     <input className="form-control mt-2" type="file" id="image" onChange={onChange} />
                 </div>
 
-                <button className="btn btn-danger" id="send"onClick={uploadimg}>올리기</button>
+                <button className="btn btn-danger" id="send" onClick={uploadimg}>올리기</button>
                 <Button onClick={() => { navigate(-1) }}>돌아가기</Button>
             </div>
         </>
     )
+
 }

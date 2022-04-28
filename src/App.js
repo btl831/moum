@@ -18,6 +18,7 @@ import ChartPage from './music/features/Chart';
 import ListPage from './music/community/ListPage';
 import Detail from './music/community/Detail';
 import Chatroom from './music/community/Chatroom';
+import Edit from './music/etc/Edit';
 
 import GamePage from './game/GamePage'
 import Wordle from './game/wordle/Wordle';
@@ -67,6 +68,7 @@ function App() {
                 <Route path="list" element={<ListPage />}/>
                 <Route path="detail/:id" element={<Detail />}/>
                 <Route path="chatroom" element={<Chatroom />} />
+                <Route path="edit/:id" element={<Edit/>} />
               </Route>
               
               <Route path="game">

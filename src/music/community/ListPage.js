@@ -6,7 +6,11 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function ListPage() {
     const [text, setText] = useState([]);
+    // const [volume,setVolume] = useState(1);
+
     const myuid = JSON.parse(localStorage.getItem('user')).uid;
+    
+
     useEffect(() => {
         db.collection('Comment').get().then((result) => {
             var array = [];
@@ -45,18 +49,14 @@ export default function ListPage() {
 
                                         </div>
                                         <div className='contextbox'>
-                                        작성자:{a.displayName}
-                                        <p> {a.context} </p>
+                                            작성자:{a.displayName}
+                                            <p> {a.context} </p>
                                         </div>
-
-
-
                                     </div>
-
                                     <div className='col-md-2'>
                                         {myuid == a.uid
                                             ? <div className='pb-3'>
-                                                <Button  >수정하기</Button>
+                                                <Button href={'edit/' + a.id}>수정하기</Button>
                                             </div>
                                             :
                                             null
@@ -73,13 +73,13 @@ export default function ListPage() {
                                                 )
                                         }
                                     </div>
-
-
                                 </div>
                             </ListGroup.Item>
                         )
                     }
                 </ListGroup>
+                <Button className='writeBtn' href='/music/write'>글쓰기</Button>
+                {/* <Button onClick={setVolume(volume+1)}>더보기</Button> */}
             </div>
         </>
     )
