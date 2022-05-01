@@ -4,3 +4,8 @@
     z-index: 10;
     background-color: #212529;
 }
+.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
