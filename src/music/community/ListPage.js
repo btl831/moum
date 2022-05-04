@@ -54,7 +54,7 @@ export default function ListPage() {
                                         </div>
                                     </div>
                                     <div className='col-md-2'>
-                                        {myuid == a.uid
+                                        {myuid === a.uid
                                             ? <div className='pb-3'>
                                                 <Button href={'edit/' + a.id}>수정하기</Button>
                                             </div>

@@ -104,7 +104,7 @@ export default function Detail() {
             <div className="container pt-3">
                 <div className='itemShow'>
                     {
-                        item.image == null
+                        item.image === null
                             ? null
                             : <div className="detail-pic">
                                 <img className="itemimg" alt="로딩불가" src={item.image} width="30%" />
@@ -114,7 +114,7 @@ export default function Detail() {
                         <h5>제목 : {item.title}</h5>
                         <p>작성자: {item.displayName}</p>
                         {
-                            myuid == item.uid
+                            myuid === item.uid
                                 ? <Button variant='danger' onClick={deleteitem}>삭제하기</Button>
                                 : null
                         }
