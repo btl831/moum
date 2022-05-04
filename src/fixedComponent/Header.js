@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Navbar, Container, Nav } from 'react-bootstrap';
+import { Button, Navbar, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styles from './Header.module.css'
 
@@ -13,8 +13,8 @@ export default function Header() {
             <div className={styles.static}>
                 <div className="row">
                     <Navbar bg="dark" variant="dark" style={{ height:"70px" }}>
-                        <div className="col-md-1" />
-                        <div className="col-md-3">
+                        <div className="col-sm-1 col-md-1" />
+                        <div className="col-sm-6 col-md-6">
                             <div style={{float:"left"}}>
                                 <Navbar.Brand href="/" >
                                     <img
@@ -37,8 +37,7 @@ export default function Header() {
                                 </Nav>
                             </div>
                         </div>
-                        <div className="col-md-4" />
-                        <div className="col-md-3">
+                        <div className="col-sm-4 col-md-4">
                             <div style={{float:"right"}}>
                                 {
                                     userObj != null
@@ -47,7 +46,7 @@ export default function Header() {
                                 }
                             </div>
                         </div>
-                        <div className="col-md-1" />
+                        <div className="col-sm-1 col-md-1" />
                     </Navbar>
                 </div>
             </div>

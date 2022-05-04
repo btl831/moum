@@ -10,10 +10,10 @@ export default function MainPage() {
                 <img src="mainPage/MOUM.svg" alt="MOUM" /> 
             </div>
             <div className="row" style={{height:"100px"}} />
-            <div className="row mt-3" >
+            <div className="row mt-3">
                 <div className="col-sm-1 col-md-3" />
-                <div className="col-sm-5 col-md-3">
-                    <div className={styles.boxContainer}>
+                <div className="col-sm-5 col-md-3" style={{textAlign:"center"}}>
+                    <div className={styles.boxContainer} style={{display:"inline-block"}}>
                         <p className={styles.text}>
                             &nbsp;&nbsp;&nbsp;
                             음악페이지
@@ -23,8 +23,8 @@ export default function MainPage() {
                         </button>
                     </div>
                 </div>
-                <div className="col-sm-5 col-md-3">
-                    <div className={styles.boxContainer}>
+                <div className="col-sm-5 col-md-3" style={{textAlign:"center"}}>
+                    <div className={styles.boxContainer} style={{display:"inline-block"}}>
                         <p className={styles.text}>
                             &nbsp;&nbsp;&nbsp;
                             게임페이지
