@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { authService,firebaseInstance,db } from './fBase';
 import NaverLogin from './NaverLogin';
+import styles from './Login.module.css';
 
 // 로그인 컴포넌트 작성
 const Login = () => {
@@ -82,49 +83,61 @@ const Login = () => {
 
     return (
         <>
-        <Container className='full'>
-            <form onSubmit={onSubmit}>
-                <Form.Label>ID</Form.Label>
-                <Form.Control
-                    name="email" 
-                    type="email"
-                    placeholder="Email" 
-                    required value={email} 
-                    onChange={onChange}
-                />
-                <br/>
-
-                {/* 패스워드 */}
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                    name="password"
-                    type="password"
-                    placeholder="password"
-                    aria-describedby="passwordHelpBlock"
-                    required value={password} 
-                    onChange={onChange}
-                />
-                <Form.Text id="passwordHelpBlock" muted>
-                    Your password must be 8-20 characters long, contain letters and numbers, and
-                    must not contain spaces, special characters, or emoji.
-                </Form.Text>
-                {
-                    newAccount
-                    ? <Form.Control
-                        name="displayName" 
-                        type="displayName"
-                        placeholder="displayName" 
-                        required
+        <Container style={{textAlign:"center"}}>
+            <div className="row" style={{height:"100px"}} />
+            { newAccount ? <h1>계정등록</h1> : <h1>로그인</h1> } <br/>
+            <div className="row" id={styles.boxContainer}>
+                <div className="row" style={{height:"35px"}} />
+                <form onSubmit={onSubmit} id={styles.form}>
+                    <p id={styles.label}>&nbsp;ID</p>
+                    <Form.Control
+                        name="email" 
+                        type="email"
+                        placeholder="Email" 
+                        required value={email} 
                         onChange={onChange}
                     />
-                    :
-                    null
-                }
+                    <br/>
 
-                <input type="submit" value={ newAccount ? "Create Account" : "Login" } />
-                <hr/>
-            </form>
+                    {/* 패스워드 */}
+                    <p id={styles.label}>&nbsp;Password</p>
+                    <Form.Control
+                        name="password"
+                        type="password"
+                        placeholder="password"
+                        aria-describedby="passwordHelpBlock"
+                        required value={password} 
+                        onChange={onChange}
+                    />
+                    <br/>
 
+                    {
+                        newAccount
+                        ? 
+                        <>
+                            <p id={styles.label}>&nbsp;DisplayName</p>
+                            <Form.Control
+                                name="displayName" 
+                                type="displayName"
+                                placeholder="displayName" 
+                                required
+                                onChange={onChange}
+                            /><br/>
+                        </>
+                        : null
+                    }
+            
+                    <input type="submit" value={ newAccount ? "Create Account" : "Login" } />
+                    <br/><br/><hr/>
+                    <Form.Text id="passwordHelpBlock" muted>
+                        Your password must be 8-20 characters long, contain letters and numbers, and
+                        must not contain spaces, special characters, or emoji.
+                    </Form.Text>
+                    <br/><br/>
+                </form>
+            </div>
+            <br/><br/>
+            
             {/* 버튼을 클릭하면 변경과 로그인 가입을 바꿔줌 */}
             <Button variant="secondary" onClick={toggleAccount}> {newAccount ? "Login" : "Create Account"} </Button>
             <Button  variant="primary" name="google" onClick={onGoogleClick}>구글 계정으로 로그인</Button>

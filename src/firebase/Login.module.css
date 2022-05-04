@@ -1,0 +1,15 @@
+#form {
+    width: 57vw;
+    display: inline-block;
+}
+#boxContainer {
+    width: 60vw;
+    display: inline-block;
+
+    border-radius: 20px;
+    background-color: rgba(255, 253, 251, 0.616);
+    box-shadow: 1px 1px 5px rgb(199, 199, 199), 0px 1px 5px rgb(202, 202, 202);
+}
+#label {
+    float: left;
+}
